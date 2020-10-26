@@ -1,0 +1,39 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- PaperButton Default -->
+    <dimen name="paper_text_size">15sp</dimen>
+    <color name="paper_text_color">#60000000</color>
+    <color name="paper_button_color">#FFAD5B</color>
+    <color name="paper_button_shadow_color">#000000</color>
+    <dimen name="paper_button_corner_radius">2dp</dimen>
+    <dimen name="paper_padding">1dp</dimen>
+
+    <!--字体大小-->
+    <!--底部菜单栏文字、极小部分备注信息-->
+    <dimen name="text_11">11sp</dimen>
+    <!--日历文字和数据描述、信息描述-->
+    <dimen name="text_12">12sp</dimen>
+    <!--列表文字、小标题-->
+    <dimen name="text_13">13sp</dimen>
+    <!--列表文字、二级标题、操作按钮配文-->
+    <dimen name="text_14">14sp</dimen>
+    <!--常用头像列表文字、单行文字列表、文本框文字、日志正文、一般按钮-->
+    <dimen name="text_15">15sp</dimen>
+    <!--重要列表文字、长按扭文字-->
+    <dimen name="text_16">16sp</dimen>
+    <!--导航栏标题文字、弹窗提示文字、日志标题、正文标题-->
+    <dimen name="text_18">18sp</dimen>
+    <!--其他字体大小-->
+    <dimen name="text_7">7sp</dimen>
+    <dimen name="text_9">9sp</dimen>
+    <dimen name="text_10">10sp</dimen>
+    <dimen name="text_17">17sp</dimen>
+    <dimen name="text_20">20sp</dimen>
+    <dimen name="text_22">22sp</dimen>
+    <dimen name="text_25">25sp</dimen>
+    <dimen name="text_28">28sp</dimen>
+    <dimen name="text_30">30sp</dimen>
+    <dimen name="text_40">40sp</dimen>
+</resources>

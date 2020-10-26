@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:background="@color/white"
+    android:padding="10dp">
+
+    <CheckedTextView
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:drawableRight="@mipmap/ic_checked_normal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试"
+        android:textColor="@color/text_black_color"
+        android:textSize="@dimen/text_18"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="@+id/checkbox"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/tvType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试类型"
+        android:textColor="@color/text_sub"
+        android:textSize="@dimen/text_15"
+        app:layout_constraintLeft_toRightOf="@+id/checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/tvKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="索引"
+        android:textColor="@color/text_sub"
+        android:textSize="@dimen/text_15"
+        android:visibility="gone"
+        app:layout_constraintLeft_toRightOf="@+id/tvType"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:text="内容"
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/text_16"
+        app:layout_constraintLeft_toRightOf="@+id/checkbox"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvType"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:id="@+id/tvDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="下载"
+        android:textColor="@color/colorAccent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tvModify"
+        app:layout_constraintTop_toBottomOf="@+id/tvContent"/>
+
+    <TextView
+        android:id="@+id/tvModify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="修改"
+        android:textColor="@color/colorAccent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tvDelete"
+        app:layout_constraintTop_toBottomOf="@+id/tvContent"/>
+
+    <TextView
+        android:id="@+id/tvDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="删除"
+        android:textColor="@color/colorAccent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvContent"/>
+
+
+</android.support.constraint.ConstraintLayout>

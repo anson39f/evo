@@ -1,0 +1,162 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="AppStartTheme" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!--<item name="android:background">@color/windows_color</item>-->
+    </style>
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+        <!--<item name="android:listDivider">@drawable/list_divider_h1_default</item>-->
+    </style>
+
+    <style name="loading_dialog" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="home_text_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/chat_text_color</item>
+    </style>
+
+    <style name="height_0">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="height_48">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="both_match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="width_match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="height_match">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="both_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="tv_15sp" parent="both_wrap">
+        <item name="android:textSize">15sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="tv_17sp" parent="both_wrap">
+        <item name="android:textSize">17sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="tv_13sp" parent="both_wrap">
+        <item name="android:textSize">13sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="StatusColorStyle">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+        <!--<item name="contentInsetStart">5dp</item>-->
+    </style>
+
+    <!--修改toobar箭头的边距-->
+    <style name="myToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="Theme.ToolBar.Menu" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- 设置-弹窗的背景-颜色-->
+        <!--<item name="android:colorBackground">@color/white</item>-->
+        <!-- 字体的颜色-->
+        <item name="android:textColor">@color/text_main</item>
+        <!-- 字体大小-->
+        <item name="android:textSize">@dimen/text_13</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <!--<item name="contentInsetStart">0dp</item>-->
+        <!--<item name="contentInsetStartWithNavigation">0dp</item>-->
+        <!-- 用于替换菜单的三个小白点，换成自已的图片-->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+        <item name="android:actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+        <!--用于控制menu弹出的位置，位于toolbar的下面，而不是上面-->
+        <!--<item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>-->
+        <!-- 用于修改item默认的分割线-->
+        <!--<item name="android:dropDownListViewStyle">@style/dropDownStyle</item>-->
+        <!--<item name="dropDownListViewStyle">@style/dropDownStyle</item>-->
+        <!--<item name="actionMenuTextColor">@android:color/white</item>-->
+
+
+        <!--<item name="selectableItemBackground">@drawable/selector_white_gray</item>-->
+    </style>
+
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>  <!--把该属性改为false即可使menu位置位于toolbar之下-->
+        <!--<item name="android:popupBackground">@drawable/bg_white_radius5</item>-->
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">5dip</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <item name="android:dropDownHorizontalOffset">-10dip</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+    </style>
+
+    <style name="OverflowButtonStyle" parent="@android:style/Widget.ActionButton.Overflow">
+        <!--<item name="android:src">@mipmap/nav_btn_add</item>-->
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="Theme.ToolBar.Menu.Wihte" parent="Theme.ToolBar.Menu">
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+    </style>
+</resources>

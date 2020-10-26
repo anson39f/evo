@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Theme.ToolBar.Menu">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/text_main"
+            android:textSize="@dimen/text_20"/>
+    </android.support.v7.widget.Toolbar>
+
+    <RadioGroup
+        android:id="@+id/uri_setting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/dev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开发"
+            android:textColor="@color/text_main"
+            android:textSize="@dimen/text_16"/>
+
+        <RadioButton
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试"
+            android:textColor="@color/text_main"
+            android:textSize="@dimen/text_16"/>
+
+        <RadioButton
+            android:id="@+id/demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="演示"
+            android:textColor="@color/text_main"
+            android:textSize="@dimen/text_16"/>
+
+        <RadioButton
+            android:id="@+id/product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生产"
+            android:textColor="@color/text_main"
+            android:textSize="@dimen/text_16"/>
+
+        <RadioButton
+            android:id="@+id/custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义"
+            android:textColor="@color/text_main"
+            android:textSize="@dimen/text_16"/>
+    </RadioGroup>
+
+    <com.xds.project.widget.ClearEditText
+        android:id="@+id/host"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_frame_e8"
+        android:hint="请求地址"
+        android:minHeight="40dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:textColor="@color/text_main"
+        android:textColorHint="@color/text_sub"/>
+
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/dialog_selector_white_d9"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/text_14"/>
+
+</LinearLayout>

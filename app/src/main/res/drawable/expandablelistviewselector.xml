@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/expand_less" android:state_expanded="true" />
+    <item android:drawable="@mipmap/expand_less" android:state_selected="true" />
+    <item android:drawable="@mipmap/expand_less" android:state_checked="true" />
+
+    <item android:drawable="@mipmap/expand_more" />
+</selector>
