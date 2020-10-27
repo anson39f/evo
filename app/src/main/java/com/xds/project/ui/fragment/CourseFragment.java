@@ -312,12 +312,12 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         }
 
         int nodeItemHeight = Utils.dip2px(getContext(), 55);
-        for (int i = 1; i <= 16; i++) {
+        for (int i = 0; i < Constant.TIMES.length; i++) {
             TextView textView = new TextView(getContext());
             textView.setTextSize(NODE_TEXT_SIZE);
             textView.setGravity(Gravity.CENTER);
             textView.setTextColor(Color.GRAY);
-            textView.setText(String.valueOf(i));
+            textView.setText(Constant.TIMES[i]);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, nodeItemHeight);
