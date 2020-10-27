@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.xds.base.ui.activity.BaseActivity;
 import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.project.R;
+import com.xds.project.ui.fragment.CourseFragment;
 import com.xds.project.ui.fragment.HomeFragment;
 import com.xds.project.ui.fragment.MeFragment;
 import com.xds.project.util.StatusBarUtils;
@@ -40,11 +41,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews() {
 
-        StatusBarUtils.setStatusFullScreen(MainActivity.this);
+//        StatusBarUtils.setStatusFullScreen(MainActivity.this);
         //        disableShiftMode(navigation);
         //        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -57,6 +58,10 @@ public class MainActivity extends BaseActivity {
                 if (0 == position) {
                     navigation.setSelectedItemId(R.id.navigation_home);
                 } else if (1 == position) {
+                    navigation.setSelectedItemId(R.id.navigation_do_list);
+                }else if (2 == position) {
+                    navigation.setSelectedItemId(R.id.navigation_self_study);
+                }else if (3 == position) {
                     navigation.setSelectedItemId(R.id.navigation_person);
                 }
                 mLastPage = position;
@@ -93,8 +98,14 @@ public class MainActivity extends BaseActivity {
                 case R.id.navigation_home:
                     viewPager.setCurrentItem(0, true);
                     return true;
-                case R.id.navigation_person:
+                case R.id.navigation_do_list:
                     viewPager.setCurrentItem(1, true);
+                    return true;
+                case R.id.navigation_self_study:
+                    viewPager.setCurrentItem(2, true);
+                    return true;
+                case R.id.navigation_person:
+                    viewPager.setCurrentItem(3, true);
                     return true;
             }
             return false;
@@ -115,16 +126,16 @@ public class MainActivity extends BaseActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {
-                return Fragment.instantiate(getContext(), HomeFragment.class.getName());
-            } else if (position == 1) {
+                return Fragment.instantiate(getContext(), CourseFragment.class.getName());
+            } else if (position == 3) {
                 return Fragment.instantiate(getContext(), MeFragment.class.getName());
             }
-            return Fragment.instantiate(getContext(), HomeFragment.class.getName());
+            return Fragment.instantiate(getContext(), CourseFragment.class.getName());
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 4;
         }
 
         @Override

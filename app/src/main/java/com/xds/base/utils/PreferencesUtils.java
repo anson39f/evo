@@ -135,6 +135,14 @@ public class PreferencesUtils {
         return editor.commit();
     }
 
+    public static boolean putLong(Context context, String key, long value) {
+        //        SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        //        SharedPreferences.Editor editor = settings.edit();
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putLong(key, value);
+        return editor.commit();
+    }
+
     public static boolean putString(Context context, String key, String value) {
         //        SharedPreferences settings = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         //        SharedPreferences.Editor editor = settings.edit();

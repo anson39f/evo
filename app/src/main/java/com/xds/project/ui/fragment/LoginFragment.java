@@ -51,9 +51,9 @@ public class LoginFragment extends BaseFragment {
 
     @OnClick(R.id.bt_login)
     void login() {
-//                ActivityTools.startToNextActivity(getContext(), MainActivity.class);
-//                ToastUtil.show(mContext, "登陆成功");
-//                finish();
+                ActivityTools.startToNextActivity(getContext(), MainActivity.class);
+                ToastUtil.show(mContext, "登陆成功");
+                finish();
         if (userph.getText().toString().equals("")) {
             ToastUtil.show(mContext, "请先输入账号");
         } else if (userpass.getText().toString().equals("")) {

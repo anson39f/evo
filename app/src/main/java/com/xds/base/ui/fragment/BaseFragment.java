@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -181,6 +182,9 @@ public abstract class BaseFragment extends RxFragment implements IBaseView {
         }
     }
 
+    public <T extends View> T findViewById(@IdRes int id) {
+        return main.findViewById(id);
+    }
 
     @Override
     public boolean isDestroyed() {

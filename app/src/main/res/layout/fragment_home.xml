@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,7 +16,7 @@
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="5dp" />
 
             <ImageView
                 android:id="@+id/ivSearch"
@@ -26,7 +25,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_margin="20dp"
                 android:scaleType="center"
-                android:src="@android:drawable/ic_search_category_default"/>
+                android:src="@android:drawable/ic_search_category_default" />
         </RelativeLayout>
 
 
@@ -45,20 +44,20 @@
                 <TextView
                     android:id="@+id/tv_testList"
                     style="@style/home_text_style"
-                    android:drawableTop="@mipmap/icon_myleave"
-                    android:text="测试用例"/>
+                    android:drawableTop="@mipmap/detail"
+                    android:text="测试用例" />
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:background="@color/color_dddddd"/>
+                    android:background="@color/color_dddddd" />
 
                 <TextView
                     android:id="@+id/tvNewTest"
                     style="@style/home_text_style"
                     android:drawableTop="@mipmap/icon_mysign_history"
-                    android:text="新增测试用例"/>
+                    android:text="新增测试用例" />
 
 
             </LinearLayout>
@@ -71,7 +70,7 @@
 
                 <include
                     layout="@layout/view_line"
-                    android:visibility="visible"/>
+                    android:visibility="visible" />
             </FrameLayout>
 
 
@@ -87,20 +86,20 @@
                     android:id="@+id/tvKu"
                     style="@style/home_text_style"
                     android:drawableTop="@mipmap/detail"
-                    android:text="语料库建立"/>/>
+                    android:text="语料库建立" />/>
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
-                    android:background="@color/color_dddddd"/>
+                    android:background="@color/color_dddddd" />
 
                 <TextView
                     android:id="@+id/tvAddType"
                     style="@style/home_text_style"
                     android:drawableTop="@mipmap/leave"
                     android:text="新增分类"
-                    android:visibility="visible"/>/>
+                    android:visibility="visible" />/>
 
             </LinearLayout>
         </LinearLayout>
@@ -112,8 +111,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin">
 
-            <include
-                layout="@layout/view_line"/>
+            <include layout="@layout/view_line" />
         </FrameLayout>
 
         <LinearLayout
@@ -134,19 +132,19 @@
                     android:id="@+id/tvSosList"
                     style="@style/home_text_style"
                     android:drawableTop="@mipmap/leave"
-                    android:text="紧急呼叫记录"/>/>
+                    android:text="紧急呼叫记录" />/>
 
                 <TextView
                     android:id="@+id/tvWuyeList"
                     style="@style/home_text_style"
-                    android:drawableTop="@mipmap/icon_myleave"
-                    android:text="物业呼叫记录"/>
+                    android:drawableTop="@mipmap/detail"
+                    android:text="物业呼叫记录" />
 
                 <TextView
                     android:id="@+id/tvDoctorList"
                     style="@style/home_text_style"
-                    android:drawableTop="@mipmap/icon_myleave"
-                    android:text="医护呼叫记录"/>
+                    android:drawableTop="@mipmap/detail"
+                    android:text="医护呼叫记录" />
 
             </LinearLayout>
 
@@ -156,8 +154,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin">
 
-                <include
-                    layout="@layout/view_line"/>
+                <include layout="@layout/view_line" />
             </FrameLayout>
 
             <LinearLayout
@@ -171,17 +168,17 @@
                     android:id="@+id/tvCreat"
                     style="@style/home_text_style"
                     android:drawableTop="@mipmap/leave"
-                    android:text="今日考勤"/>/>
+                    android:text="今日考勤" />/>
 
                 <TextView
                     style="@style/home_text_style"
                     android:drawableTop="@mipmap/leave"
-                    android:visibility="invisible"/>/>
+                    android:visibility="invisible" />/>
 
                 <TextView
                     style="@style/home_text_style"
                     android:drawableTop="@mipmap/leave"
-                    android:visibility="invisible"/>/>
+                    android:visibility="invisible" />/>
 
             </LinearLayout>
 
@@ -191,8 +188,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin">
 
-                <include
-                    layout="@layout/view_line"/>
+                <include layout="@layout/view_line" />
             </FrameLayout>
         </LinearLayout>
 

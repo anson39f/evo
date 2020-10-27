@@ -4,12 +4,22 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@mipmap/icon_home"
+        android:icon="@mipmap/schedule"
         android:title="@string/title_home"/>
 
     <item
+        android:id="@+id/navigation_do_list"
+        android:icon="@mipmap/detail"
+        android:title="@string/title_do_list"/>
+
+    <item
+        android:id="@+id/navigation_self_study"
+        android:icon="@mipmap/detail"
+        android:title="@string/title_self_study"/>
+
+    <item
         android:id="@+id/navigation_person"
-        android:icon="@mipmap/icon_me"
+        android:icon="@mipmap/leave"
         android:title="@string/title_person"/>
 
 </menu>
