@@ -19,7 +19,6 @@ import android.view.View;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.xds.base.config.Env;
 import com.xds.base.ui.IBaseView;
 import com.xds.project.R;
 import com.xds.project.util.ToastUtil;
@@ -260,9 +259,9 @@ public abstract class BaseActivity extends RxAppCompatActivity implements
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (Env.ISCONFIGURL && !(this instanceof EnvSettingActivity)) {
-            getMenuInflater().inflate(R.menu.base_env_setting, menu);
-        }
+//        if (Env.ISCONFIGURL && !(this instanceof EnvSettingActivity)) {
+//            getMenuInflater().inflate(R.menu.base_env_setting, menu);
+//        }
         return super.onCreateOptionsMenu(menu);
     }
 

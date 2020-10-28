@@ -10,18 +10,6 @@
     <include layout="@layout/include_searchview"/>
 
     <TextView
-        android:id="@+id/tvSelect"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/dialog_selector_white_d9"
-        android:drawablePadding="5dp"
-        android:drawableRight="@mipmap/ic_next"
-        android:padding="@dimen/text_10"
-        android:text="选择筛选分类"/>
-
-
-    <TextView
         android:id="@+id/tvNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,23 +54,7 @@
             android:visibility="gone"
             widget:paper_color="@color/maincolor"
             widget:paper_corner_radius="19dp"
-            widget:paper_text="批量下载"
-            widget:paper_text_color="@color/white"
-            widget:paper_text_size="15sp"/>
-
-        <com.xds.project.widget.PaperButton
-            android:id="@+id/btDelete"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:visibility="gone"
-            widget:paper_color="@color/maincolor"
-            widget:paper_corner_radius="19dp"
-            widget:paper_text="批量删除"
+            widget:paper_text="Import"
             widget:paper_text_color="@color/white"
             widget:paper_text_size="15sp"/>
     </LinearLayout>

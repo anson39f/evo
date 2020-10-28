@@ -34,6 +34,8 @@ import com.xds.project.data.greendao.CourseV2Dao;
 import com.xds.project.entity.User;
 import com.xds.project.mvp.CourseContract;
 import com.xds.project.mvp.CoursePresenter;
+import com.xds.project.ui.activity.AddClassActivity;
+import com.xds.project.ui.activity.SearchActivity;
 import com.xds.project.ui.adapter.SelectWeekAdapter;
 import com.xds.project.util.AppUtils;
 import com.xds.project.util.LogUtil;
@@ -131,9 +133,9 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_set) {
-//                    Intent intent = new Intent(CourseActivity.this,
-//                            HomeActivity.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(getActivity(),
+                            SearchActivity.class);
+                    startActivity(intent);
                     return true;
                 }
                 return false;
@@ -151,7 +153,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         mTvWeekCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weekTitle(v);
+//                weekTitle(v);
             }
         });
         TextView tvTitle = findViewById(R.id.tv_toolbar_title);
@@ -166,7 +168,8 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     public void updateCoursePreference() {
         updateCurrentWeek();
         mCurrentMonth = TimeUtils.getNowMonth();
-        mMMonthTextView.setText(mCurrentMonth + "\n月");
+//        mMMonthTextView.setText(mCurrentMonth + "\n月");
+        mMMonthTextView.setText(Constant.MONTHS[mCurrentMonth - 1]);
 
         //get id
         long currentCsNameId = PreferencesUtils.getLong(getActivity(), getString(R.string.app_preference_current_cs_name_id), 0L);
@@ -285,7 +288,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         mLayoutNodeGroup.removeAllViews();
         mLayoutWeekGroup.removeAllViews();
 
-        for (int i = -1; i < 7; i++) {
+        for (int i = -1; i < 5; i++) {
             TextView textView = new TextView(getContext());
             textView.setGravity(Gravity.CENTER);
 
@@ -298,7 +301,8 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
                         Utils.dip2px(getContext(), NODE_WIDTH),
                         ViewGroup.LayoutParams.MATCH_PARENT);
                 textView.setTextSize(NODE_TEXT_SIZE);
-                textView.setText(mCurrentMonth + "\n月");
+//                textView.setText(mCurrentMonth + "\n月");
+                textView.setText(Constant.MONTHS[Math.max(mCurrentMonth - 1, 0)]);
 
                 mMMonthTextView = textView;
             } else {
@@ -361,9 +365,14 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
             public void onLongClick(List<CourseAncestor> courses, View itemView) {
                 final CourseV2 course = (CourseV2) courses.get(0);
                 DialogHelper dialogHelper = new DialogHelper();
+                StringBuffer end = new StringBuffer();
+                if (course.getCouNodeCount() > 1) {
+                    end.append("-");
+                    end.append(Constant.TIMES[course.getCouStartNode() + course.getCouNodeCount() - 2]);
+                }
                 dialogHelper.showNormalDialog(getActivity(), getString(R.string.confirm_to_delete),
-                        "课程 【" + course.getCouName() + "】" + Constant.WEEK[course.getCouWeek()]
-                                + "第" + course.getCouStartNode() + "节 ", new DialogListener() {
+                        "course 【" + course.getCouName() + "】" + Constant.WEEK[course.getCouWeek()]
+                                + " " + Constant.TIMES[course.getCouStartNode() - 1] + end.toString(), new DialogListener() {
                             @Override
                             public void onPositive(DialogInterface dialog, int which) {
                                 super.onPositive(dialog, which);
@@ -373,10 +382,10 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
             }
 
             public void onAdd(CourseAncestor course, View addView) {
-//                Intent intent = new Intent(CourseActivity.this, AddActivity.class);
-//                intent.putExtra(Constant.INTENT_ADD_COURSE_ANCESTOR, course);
-//                intent.putExtra(Constant.INTENT_ADD, true);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), AddClassActivity.class);
+                intent.putExtra(Constant.INTENT_ADD_COURSE_ANCESTOR, course);
+                intent.putExtra(Constant.INTENT_ADD, true);
+                startActivity(intent);
             }
 
         });

@@ -16,6 +16,7 @@ import com.xds.project.R;
 import com.xds.project.ui.fragment.CourseFragment;
 import com.xds.project.ui.fragment.HomeFragment;
 import com.xds.project.ui.fragment.MeFragment;
+import com.xds.project.ui.fragment.ToDoListFragment;
 import com.xds.project.util.StatusBarUtils;
 
 import butterknife.BindView;
@@ -59,9 +60,9 @@ public class MainActivity extends BaseActivity {
                     navigation.setSelectedItemId(R.id.navigation_home);
                 } else if (1 == position) {
                     navigation.setSelectedItemId(R.id.navigation_do_list);
-                }else if (2 == position) {
+                } else if (2 == position) {
                     navigation.setSelectedItemId(R.id.navigation_self_study);
-                }else if (3 == position) {
+                } else if (3 == position) {
                     navigation.setSelectedItemId(R.id.navigation_person);
                 }
                 mLastPage = position;
@@ -127,6 +128,10 @@ public class MainActivity extends BaseActivity {
         public Fragment getItem(int position) {
             if (position == 0) {
                 return Fragment.instantiate(getContext(), CourseFragment.class.getName());
+            } else if (position == 1) {
+                return Fragment.instantiate(getContext(), ToDoListFragment.class.getName());
+            } else if (position == 2) {
+                return Fragment.instantiate(getContext(), ToDoListFragment.class.getName());
             } else if (position == 3) {
                 return Fragment.instantiate(getContext(), MeFragment.class.getName());
             }
@@ -181,7 +186,6 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
 
     }
-
 
 
 }

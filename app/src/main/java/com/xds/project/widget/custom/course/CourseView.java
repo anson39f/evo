@@ -32,7 +32,7 @@ public class CourseView extends FrameLayout {
     private int mWidth;
     private int mHeight;
 
-    private int mRowCount = 7;
+    private int mRowCount = 5;
     private int mColCount = 13;
 
     private int mRowItemWidth = dip2px(50);

@@ -49,7 +49,7 @@
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.SearchActivity"/>
         <activity android:name=".ui.activity.ModifyActivity"/>
-        <activity android:name=".ui.activity.AddCaseActivity"/>
+        <activity android:name=".ui.activity.AddClassActivity"/>
         <activity android:name=".ui.activity.AddKuActivity"/>
         <activity android:name=".ui.activity.TypeListActivity"/>
         <activity android:name=".ui.activity.KuListActivity"/>

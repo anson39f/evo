@@ -3,6 +3,7 @@ package com.xds.project.widget;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
@@ -14,7 +15,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.xds.project.R;
+import com.xds.project.app.Constant;
 import com.xds.project.data.beanv2.CourseV2;
+import com.xds.project.ui.activity.AddClassActivity;
 
 
 /**
@@ -35,12 +38,11 @@ public class ShowDetailDialog {
             return;
         }
 
-        WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-        lp.alpha = 0.5f;
-        activity.getWindow().setAttributes(lp);
-
+//        WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
+//        lp.alpha = 0.5f;
+//        activity.getWindow().setAttributes(lp);
         mPopupWindow = new PopupWindow(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         final View popupView = LayoutInflater.from(activity).inflate(R.layout.dialog_detail_course,
                 null);
@@ -86,24 +88,30 @@ public class ShowDetailDialog {
     }
 
     private void edit(Activity activity, CourseV2 course) {
-//        Intent intent = new Intent(activity, AddActivity.class);
-//        intent.putExtra(Constant.INTENT_EDIT_COURSE, course);
-//        activity.startActivity(intent);
-//        dismiss();
+        Intent intent = new Intent(activity, AddClassActivity.class);
+        intent.putExtra(Constant.INTENT_EDIT_COURSE, course);
+        activity.startActivity(intent);
+        dismiss();
     }
 
     private void initWindow(final Activity activity, final PopupWindow.OnDismissListener dismissListener, View popupView) {
         mPopupWindow.setContentView(popupView);
-        mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
+//        mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
+        mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#80000000")));
         mPopupWindow.setFocusable(true);
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setClippingEnabled(true);
-        mPopupWindow.setAnimationStyle(R.style.animZoomIn);
+//        mPopupWindow.setAnimationStyle(R.style.animZoomIn);
 
         mPopupWindow.getContentView().measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         mPopupWindow.showAtLocation(activity.getWindow().getDecorView(), Gravity.CENTER, 0, 0);
-
+        mPopupWindow.getContentView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         mPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -119,14 +127,14 @@ public class ShowDetailDialog {
     private StringBuilder getNodeInfo(CourseV2 course) {
         StringBuilder nodeInfo = new StringBuilder();
         if (course.getCouNodeCount() == 1) {
-            nodeInfo.append("第");
+//            nodeInfo.append("第");
         }
-        nodeInfo.append(course.getCouStartNode());
+        nodeInfo.append(Constant.TIMES[course.getCouStartNode() - 1]);
         if (course.getCouNodeCount() > 1) {
             nodeInfo.append("-");
-            nodeInfo.append(course.getCouStartNode() + course.getCouNodeCount() - 1);
+            nodeInfo.append(Constant.TIMES[course.getCouStartNode() + course.getCouNodeCount() - 2]);
         }
-        nodeInfo.append("节");
+//        nodeInfo.append("节");
         return nodeInfo;
     }
 

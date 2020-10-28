@@ -11,7 +11,7 @@ import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.project.BaseApplication;
 import com.xds.project.R;
 import com.xds.project.entity.User;
-import com.xds.project.ui.activity.AddCaseActivity;
+import com.xds.project.ui.activity.AddClassActivity;
 import com.xds.project.ui.activity.AddKuActivity;
 import com.xds.project.ui.activity.AddTypeActivity;
 import com.xds.project.ui.activity.SearchActivity;
@@ -87,7 +87,7 @@ public class HomeFragment extends BaseFragment {
             case R.id.tvNewTest:
                 if (checkUser())
                     return;
-                ActivityTools.startToNextActivity(getActivity(), AddCaseActivity.class);
+                ActivityTools.startToNextActivity(getActivity(), AddClassActivity.class);
                 break;
             case R.id.tvKu:
                 if (checkUser())

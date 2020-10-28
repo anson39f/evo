@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@mipmap/schedule"
-        android:title="@string/title_home"/>
+        android:icon="@mipmap/icon_timetabler"
+        android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_do_list"
-        android:icon="@mipmap/detail"
-        android:title="@string/title_do_list"/>
+        android:icon="@mipmap/icon_to_do_list"
+        android:title="@string/title_do_list" />
 
     <item
         android:id="@+id/navigation_self_study"
-        android:icon="@mipmap/detail"
-        android:title="@string/title_self_study"/>
+        android:icon="@drawable/ic_svg_book"
+        android:title="@string/title_self_study" />
 
     <item
         android:id="@+id/navigation_person"
-        android:icon="@mipmap/leave"
-        android:title="@string/title_person"/>
+        android:icon="@mipmap/icon_me"
+        android:title="@string/title_person" />
 
 </menu>

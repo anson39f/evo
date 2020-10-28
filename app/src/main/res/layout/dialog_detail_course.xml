@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_dailog_detail"
+        android:clickable="true"
         android:orientation="vertical"
-        android:paddingBottom="4dp"
         android:paddingLeft="16dp"
+        android:paddingTop="8dp"
         android:paddingRight="16dp"
-        android:paddingTop="8dp">
+        android:paddingBottom="4dp">
 
         <LinearLayout
             android:layout_width="220dp"
@@ -34,18 +34,18 @@
                 android:maxLines="2"
                 tools:text="线性代数"
                 tools:textColor="@color/primary_text"
-                tools:textSize="24sp"/>
+                tools:textSize="24sp" />
 
             <ImageView
                 android:id="@+id/iv_eidt"
                 android:layout_width="40dp"
-                android:scaleType="centerInside"
                 android:layout_height="40dp"
                 android:layout_marginLeft="4dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/ic_svg_edit"/>
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_svg_edit" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,7 +58,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_location_on_black_24dp"/>
+                android:src="@drawable/ic_location_on_black_24dp" />
 
             <TextView
                 android:id="@+id/tv_calssroom"
@@ -68,7 +68,7 @@
                 android:letterSpacing="0.1"
                 tools:text="博学楼123TD"
                 tools:textColor="@color/primary_text"
-                tools:textSize="16sp"/>
+                tools:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +81,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_person_black_24dp"/>
+                android:src="@drawable/ic_person_black_24dp" />
 
 
             <TextView
@@ -92,7 +92,7 @@
                 android:letterSpacing="0.1"
                 tools:text="杨老师"
                 tools:textColor="@color/primary_text"
-                tools:textSize="16sp"/>
+                tools:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -105,7 +105,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_timeline_black_24dp"/>
+                android:src="@drawable/ic_timeline_black_24dp" />
 
 
             <TextView
@@ -116,7 +116,7 @@
                 android:letterSpacing="0.1"
                 tools:text="周一 1-2节"
                 tools:textColor="@color/primary_text"
-                tools:textSize="16sp"/>
+                tools:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -124,12 +124,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_access_time_black_24dp"/>
+                android:src="@drawable/ic_access_time_black_24dp" />
 
             <TextView
                 android:id="@+id/tv_week_range"
@@ -139,7 +140,7 @@
                 android:letterSpacing="0.1"
                 tools:text="第1-16周"
                 tools:textColor="@color/primary_text"
-                tools:textSize="16sp"/>
+                tools:textSize="16sp" />
         </LinearLayout>
 
         <ImageView
@@ -152,6 +153,6 @@
             android:clickable="true"
             android:focusable="true"
             android:scaleType="center"
-            android:src="@drawable/iv_svg_close"/>
+            android:src="@drawable/iv_svg_close" />
     </LinearLayout>
 </LinearLayout>
