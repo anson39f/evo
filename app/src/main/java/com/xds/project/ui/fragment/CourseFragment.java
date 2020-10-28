@@ -397,7 +397,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     private void deleteCancelSnackBar(final CourseV2 course) {
         course.setDisplayable(false);
         mCourseViewV2.resetView();
-        Snackbar.make(mMMonthTextView, "删除成功！☆\\(￣▽￣)/", Snackbar.LENGTH_LONG).setAction("撤销",
+        Snackbar.make(mMMonthTextView, "delete success！", Snackbar.LENGTH_LONG).setAction("cancel",
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

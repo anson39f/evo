@@ -60,14 +60,14 @@ public class DialogHelper {
         new AlertDialog.Builder(activity)
                 .setTitle(title)
                 .setMessage(massage)
-                .setPositiveButton("确定",
+                .setPositiveButton("confirm",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 listener.onPositive(dialog, which);
                             }
                         })
-                .setNegativeButton("取消",
+                .setNegativeButton("cancel",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

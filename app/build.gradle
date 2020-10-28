@@ -76,4 +76,5 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    implementation 'com.github.free46000:MultiItem:0.9.7'
 }
