@@ -7,7 +7,7 @@ import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.project.BaseApplication;
 import com.xds.project.R;
 import com.xds.project.entity.User;
-import com.xds.project.ui.activity.AddClassActivity;
+import com.xds.project.ui.activity.AddStudyActivity;
 import com.xds.project.ui.activity.SearchActivity;
 import com.xds.project.util.ActivityTools;
 import com.xds.project.widget.PaperButton;
@@ -70,7 +70,7 @@ public class SelfStudyFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.start:
-                ActivityTools.startToNextActivity(getActivity(), AddClassActivity.class);
+                ActivityTools.startToNextActivity(getActivity(), AddStudyActivity.class);
                 break;
             case R.id.history:
                 ActivityTools.startToNextActivity(getActivity(), SearchActivity.class);

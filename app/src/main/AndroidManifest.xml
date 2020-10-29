@@ -54,6 +54,8 @@
         <activity android:name=".ui.activity.TypeListActivity"/>
         <activity android:name=".ui.activity.KuListActivity"/>
         <activity android:name=".ui.activity.AddTypeActivity"/>
+        <activity android:name=".ui.activity.AddStudyActivity" />
+        <activity android:name=".ui.activity.LockActivity" />
 
 
     </application>

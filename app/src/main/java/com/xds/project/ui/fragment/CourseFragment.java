@@ -74,9 +74,9 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     private CourseView mCourseViewV2;
     private LinearLayout mLayoutWeekGroup;
     private LinearLayout mLayoutNodeGroup;
-    private int WEEK_TEXT_SIZE = 12;
-    private int NODE_TEXT_SIZE = 10;
-    private int NODE_WIDTH = 28;
+    private int WEEK_TEXT_SIZE = 10;
+    private int NODE_TEXT_SIZE = 9;
+    private int NODE_WIDTH = 25;
     private TextView mMMonthTextView;
     private RecyclerView mRvSelectWeek;
     private int mHeightSelectWeek;
@@ -154,7 +154,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         mTvWeekCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                weekTitle(v);
+                //                weekTitle(v);
             }
         });
         TextView tvTitle = findViewById(R.id.tv_toolbar_title);
@@ -169,7 +169,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     public void updateCoursePreference() {
         updateCurrentWeek();
         mCurrentMonth = TimeUtils.getNowMonth();
-//        mMMonthTextView.setText(mCurrentMonth + "\n月");
+        //        mMMonthTextView.setText(mCurrentMonth + "\n月");
         mMMonthTextView.setText(Constant.MONTHS[mCurrentMonth - 1]);
 
         //get id
@@ -302,14 +302,14 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
                         Utils.dip2px(getContext(), NODE_WIDTH),
                         ViewGroup.LayoutParams.MATCH_PARENT);
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, NODE_TEXT_SIZE);
-//                textView.setText(mCurrentMonth + "\n月");
+                //                textView.setText(mCurrentMonth + "\n月");
                 textView.setText(Constant.MONTHS[Math.max(mCurrentMonth - 1, 0)]);
 
                 mMMonthTextView = textView;
             } else {
                 params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
                 params.weight = 1;
-                textView.setTextSize(WEEK_TEXT_SIZE);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, WEEK_TEXT_SIZE);
                 textView.setText(Constant.WEEK_SINGLE[i]);
             }
 
@@ -444,11 +444,11 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         }
 
         // 没有课程才显示logo
-//        if (courses.isEmpty()) {
-//            mLayoutCourse.setBackgroundResource(R.mipmap.logo);
-//        } else {
-//            mLayoutCourse.setBackgroundResource(0);
-//        }
+        //        if (courses.isEmpty()) {
+        //            mLayoutCourse.setBackgroundResource(R.mipmap.logo);
+        //        } else {
+        //            mLayoutCourse.setBackgroundResource(0);
+        //        }
     }
 
     private boolean checkUser() {

@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyMenuTextStyle">
+        <item name="android:textSize">10sp</item>
+    </style>
+
 
     <style name="AppStartTheme" parent="AppTheme">
         <!-- Customize your theme here. -->
@@ -229,6 +233,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
     <style name="animDown" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/top_in</item>
         <item name="android:windowExitAnimation">@anim/top_out</item>

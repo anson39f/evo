@@ -53,8 +53,6 @@ public class PopupWindowDialog implements View.OnClickListener {
 
         mEtLocation = view.findViewById(R.id.et_location);
         mEtLocation.setText(course.getCouLocation());
-
-
         initWeekSelect(view, course.getShowIndexes());
 
         for (int i = 1; i <= 5; i++) {
