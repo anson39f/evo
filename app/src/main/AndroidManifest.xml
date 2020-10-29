@@ -48,7 +48,7 @@
         <activity android:name="com.xds.base.ui.activity.EnvSettingActivity"/>
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.SearchActivity"/>
-        <activity android:name=".ui.activity.ModifyActivity"/>
+        <activity android:name=".ui.activity.AddThingsActivity"/>
         <activity android:name=".ui.activity.AddClassActivity"/>
         <activity android:name=".ui.activity.AddKuActivity"/>
         <activity android:name=".ui.activity.TypeListActivity"/>

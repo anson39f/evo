@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:padding="10dp"
-        android:text="请选择"/>
+        android:text="please choose"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"

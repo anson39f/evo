@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:widget="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:widget="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/title_toolbar"/>
+    <include layout="@layout/title_toolbar" />
+
+    <EditText
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/rect_gray"
+        android:gravity="start"
+        android:hint="Title"
+        android:padding="5dp"
+        android:textColor="@color/text_main" />
 
     <TextView
         android:id="@+id/tvType"
@@ -15,8 +26,9 @@
         android:background="@drawable/rect_gray"
         android:drawableRight="@mipmap/ic_next"
         android:gravity="start"
-        android:hint="请选择类型"
-        android:padding="5dp"/>
+        android:hint="choose level"
+        android:padding="5dp"
+        android:textColor="@color/text_sub" />
 
     <EditText
         android:id="@+id/etContent"
@@ -25,9 +37,9 @@
         android:layout_margin="10dp"
         android:background="@drawable/rect_gray"
         android:gravity="start"
-        android:hint="输入内容"
+        android:hint="Content"
         android:minHeight="100dp"
-        android:padding="5dp"/>
+        android:padding="5dp" />
 
     <com.xds.project.widget.PaperButton
         android:id="@+id/btModify"
@@ -35,12 +47,12 @@
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
         android:gravity="center"
         widget:paper_color="@color/maincolor"
         widget:paper_corner_radius="19dp"
-        widget:paper_text="修改"
+        widget:paper_text="Create"
         widget:paper_text_color="@color/white"
-        widget:paper_text_size="15sp"/>
+        widget:paper_text_size="15sp" />
 </LinearLayout>

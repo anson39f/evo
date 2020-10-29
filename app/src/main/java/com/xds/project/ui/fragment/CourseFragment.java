@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -74,7 +75,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     private LinearLayout mLayoutWeekGroup;
     private LinearLayout mLayoutNodeGroup;
     private int WEEK_TEXT_SIZE = 12;
-    private int NODE_TEXT_SIZE = 11;
+    private int NODE_TEXT_SIZE = 10;
     private int NODE_WIDTH = 28;
     private TextView mMMonthTextView;
     private RecyclerView mRvSelectWeek;
@@ -300,7 +301,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
                 params = new LinearLayout.LayoutParams(
                         Utils.dip2px(getContext(), NODE_WIDTH),
                         ViewGroup.LayoutParams.MATCH_PARENT);
-                textView.setTextSize(NODE_TEXT_SIZE);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, NODE_TEXT_SIZE);
 //                textView.setText(mCurrentMonth + "\n月");
                 textView.setText(Constant.MONTHS[Math.max(mCurrentMonth - 1, 0)]);
 

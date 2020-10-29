@@ -8,16 +8,16 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
 
 import com.xds.base.ui.activity.BaseActivity;
 import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.project.R;
 import com.xds.project.ui.fragment.CourseFragment;
-import com.xds.project.ui.fragment.HomeFragment;
 import com.xds.project.ui.fragment.MeFragment;
+import com.xds.project.ui.fragment.SelfStudyFragment;
 import com.xds.project.ui.fragment.ToDoListFragment;
-import com.xds.project.util.StatusBarUtils;
 
 import butterknife.BindView;
 
@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
     private int mLastPage;
+    private MainPagerAdapter adapter;
 
     @Override
     protected int attachLayoutRes() {
@@ -47,7 +48,8 @@ public class MainActivity extends BaseActivity {
         //        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewPager.setOffscreenPageLimit(4);
-        viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
+        adapter = new MainPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -131,7 +133,7 @@ public class MainActivity extends BaseActivity {
             } else if (position == 1) {
                 return Fragment.instantiate(getContext(), ToDoListFragment.class.getName());
             } else if (position == 2) {
-                return Fragment.instantiate(getContext(), ToDoListFragment.class.getName());
+                return Fragment.instantiate(getContext(), SelfStudyFragment.class.getName());
             } else if (position == 3) {
                 return Fragment.instantiate(getContext(), MeFragment.class.getName());
             }
@@ -187,5 +189,13 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        //需要把touch事件传给dragHelper，true表示消耗掉事件
+        //需要保证在Activity或者外层的ViewGroup或可以拦截Touch事件的地方回调都可以
+        if (adapter.getCurrentFragment() instanceof ToDoListFragment) {
+            return ((ToDoListFragment) adapter.getCurrentFragment()).dispatchTouchEvent(ev) || super.dispatchTouchEvent(ev);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 }

@@ -20,7 +20,7 @@ import com.xds.project.R;
 import com.xds.project.api.remote.BaseAppApi;
 import com.xds.project.entity.TestCase;
 import com.xds.project.entity.User;
-import com.xds.project.ui.activity.ModifyActivity;
+import com.xds.project.ui.activity.AddThingsActivity;
 import com.xds.project.ui.activity.TestCaseListActivity;
 import com.xds.project.util.ToastUtil;
 
@@ -102,7 +102,7 @@ public class TestCaseListAdapter extends BaseQuickAdapter<TestCase> {
         holder.setOnClickListener(R.id.tvModify, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ModifyActivity.class);
+                Intent intent = new Intent(mContext, AddThingsActivity.class);
                 intent.putExtra("id", item.id);
                 intent.putExtra("typeId", item.typeid);
                 intent.putExtra("data", item);

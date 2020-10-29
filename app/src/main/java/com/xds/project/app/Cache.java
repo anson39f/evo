@@ -9,6 +9,7 @@ import com.xds.project.data.greendao.CourseV2Dao;
 import com.xds.project.data.greendao.DaoMaster;
 import com.xds.project.data.greendao.DaoSession;
 import com.xds.project.data.greendao.MyOpenHelper;
+import com.xds.project.data.greendao.ThingsDao;
 import com.xds.project.util.AppUtils;
 
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class Cache {
     private CourseV2Dao mCourseV2Dao;
     private CourseV2Dao mLocalDataDao;
 
-    private String mEmail;
     private ClearableCookieJar cookieJar;
+    private ThingsDao mThingsDao;
 
     private Cache() {
     }
@@ -48,6 +49,7 @@ public class Cache {
 
         mCourseGroupDao = daoSession.getCourseGroupDao();
         mCourseV2Dao = daoSession.getCourseV2Dao();
+        mThingsDao = daoSession.getThingsDao();
     }
 
     private void initLocalDao(Context context) {
@@ -141,10 +143,15 @@ public class Cache {
         return mLocalDataDao;
     }
 
+    public ThingsDao getThingsDaoDao() {
+        return mThingsDao;
+    }
+
     public Cache setCourseV2Dao(CourseV2Dao courseV2Dao) {
         mCourseV2Dao = courseV2Dao;
         return this;
     }
+
 
     public ClearableCookieJar getCookieJar() {
         return cookieJar;
