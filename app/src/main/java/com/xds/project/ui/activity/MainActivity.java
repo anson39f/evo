@@ -99,16 +99,16 @@ public class MainActivity extends BaseActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    viewPager.setCurrentItem(0, true);
+                    viewPager.setCurrentItem(0, false);
                     return true;
                 case R.id.navigation_do_list:
-                    viewPager.setCurrentItem(1, true);
+                    viewPager.setCurrentItem(1, false);
                     return true;
                 case R.id.navigation_self_study:
-                    viewPager.setCurrentItem(2, true);
+                    viewPager.setCurrentItem(2, false);
                     return true;
                 case R.id.navigation_person:
-                    viewPager.setCurrentItem(3, true);
+                    viewPager.setCurrentItem(3, false);
                     return true;
             }
             return false;
