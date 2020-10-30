@@ -104,12 +104,12 @@ public class AddThingsActivity extends BaseActivity {
                     things.setName(name);
                     things.setDate(new Date());
                     things.setState(3);
-                    Cache.instance().getThingsDaoDao().insert(things);
+                    Cache.instance().getThingsDao().insert(things);
                 } else {
                     things.setContent(content);
                     things.setLevel(level);
                     things.setName(name);
-                    Cache.instance().getThingsDaoDao().update(things);
+                    Cache.instance().getThingsDao().update(things);
                 }
                 EventBus.getDefault().post(new ThingsEvent());
                 finish();

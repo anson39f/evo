@@ -51,7 +51,7 @@ public class SearchListAdapter extends BaseQuickAdapter<CourseV2> {
     @Override
     protected void convert(final BaseViewHolder holder, final CourseV2 item) {
         //        holder.setText(R.id.tvName, Utils.stringformat("%s", item.text));
-        holder.setText(R.id.tvType, Utils.stringformat("Course:%s", item.getCouName()));
+        holder.setText(R.id.tvType, Utils.stringformat("Course:\n%s", item.getCouName()));
         //        holder.setText(R.id.tvContent, Utils.stringformat("%s", item.contentHL));
         holder.setText(R.id.tvContent, Utils.stringformat("Teacher:%s", item.getCouTeacher()));
         StringBuilder nodeInfo = new StringBuilder();

@@ -4,6 +4,9 @@ package com.xds.project.app;
 import com.xds.project.R;
 
 public class Constant {
+    public static final String JUMP_FROM = "jump_from";
+    public static final String JUMP_FROM_SCREEN_LISTENER = "jump_from_screen_listener";
+    public static final String LOCK_SWITCH = "lock_switch";
     public static final String CONTENT_TYPE_JSON = "application/json; charset=utf-8";
     public static final String INTENT_ADD = "intent_course_add";
     public static final String INTENT_ADD_COURSE_ANCESTOR = "intent_add_course_ancestor";

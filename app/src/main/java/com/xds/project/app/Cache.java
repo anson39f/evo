@@ -4,12 +4,7 @@ import android.content.Context;
 
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.xds.project.data.beanv2.CourseV2;
-import com.xds.project.data.greendao.CourseGroupDao;
-import com.xds.project.data.greendao.CourseV2Dao;
-import com.xds.project.data.greendao.DaoMaster;
-import com.xds.project.data.greendao.DaoSession;
-import com.xds.project.data.greendao.MyOpenHelper;
-import com.xds.project.data.greendao.ThingsDao;
+import com.xds.project.data.greendao.*;
 import com.xds.project.util.AppUtils;
 
 import java.util.ArrayList;
@@ -23,6 +18,7 @@ public class Cache {
 
     private ClearableCookieJar cookieJar;
     private ThingsDao mThingsDao;
+    private SelfStudyDao mSelfStudyDao;
 
     private Cache() {
     }
@@ -50,6 +46,7 @@ public class Cache {
         mCourseGroupDao = daoSession.getCourseGroupDao();
         mCourseV2Dao = daoSession.getCourseV2Dao();
         mThingsDao = daoSession.getThingsDao();
+        mSelfStudyDao = daoSession.getSelfStudyDao();
     }
 
     private void initLocalDao(Context context) {
@@ -143,8 +140,12 @@ public class Cache {
         return mLocalDataDao;
     }
 
-    public ThingsDao getThingsDaoDao() {
+    public ThingsDao getThingsDao() {
         return mThingsDao;
+    }
+
+    public SelfStudyDao getSelfStudyDao() {
+        return mSelfStudyDao;
     }
 
     public Cache setCourseV2Dao(CourseV2Dao courseV2Dao) {

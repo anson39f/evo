@@ -84,7 +84,7 @@
     <string name="school">school</string>
     <string name="can_not_be_empty">cannot be empty</string>
     <string name="class_schedule">Timetable</string>
-    <string name="tip_add_class_empty">Course name cannot be empty!！</string>
+    <string name="tip_add_class_empty">Course cannot be empty!！</string>
     <string name="tip_add_success">add success！</string>
     <string name="tip_edit_success">edit success！</string>
     <string name="tip_not_class_time">Please set the course time！</string>

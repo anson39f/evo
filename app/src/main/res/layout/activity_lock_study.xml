@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:widget="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+        xmlns:widget="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/bg_time"
+        android:orientation="vertical">
 
     <com.xds.project.widget.PaperButton
-        android:id="@+id/btTime"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        widget:paper_color="@color/maincolor"
-        widget:paper_corner_radius="100dp"
-        widget:paper_text="00:00"
-        widget:paper_text_color="@color/white"
-        widget:paper_text_size="35sp" />
+            android:id="@+id/btTime"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            widget:paper_color="@color/white"
+            widget:paper_corner_radius="100dp"
+            widget:paper_text="00:00"
+            widget:paper_text_color="@color/text_main"
+            widget:paper_text_size="45sp" />
 </RelativeLayout>

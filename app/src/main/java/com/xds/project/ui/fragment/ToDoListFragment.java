@@ -109,7 +109,7 @@ public class ToDoListFragment extends BaseFragment {
                 if (doneList != null && !doneList.isEmpty()) {
                     for (Things things : doneList) {
                         things.setHistory(true);
-                        Cache.instance().getThingsDaoDao().update(things);
+                        Cache.instance().getThingsDao().update(things);
                     }
                     updateViews(true);
                     showToast("add success!");
@@ -127,7 +127,7 @@ public class ToDoListFragment extends BaseFragment {
 
     private void reLoadList() {
         todoList = Cache.instance()
-                .getThingsDaoDao()
+                .getThingsDao()
                 .queryBuilder()
 //                .where(ThingsDao.Properties.UserId.eq(UserId))//根据当前课表组id查询
                 .where(ThingsDao.Properties.Deleted.eq(false))//查询没有删除的
@@ -135,7 +135,7 @@ public class ToDoListFragment extends BaseFragment {
                 .where(ThingsDao.Properties.State.eq(3))
                 .list();
         processingList = Cache.instance()
-                .getThingsDaoDao()
+                .getThingsDao()
                 .queryBuilder()
 //                .where(ThingsDao.Properties.UserId.eq(UserId))//根据当前课表组id查询
                 .where(ThingsDao.Properties.Deleted.eq(false))//查询没有删除的
@@ -143,7 +143,7 @@ public class ToDoListFragment extends BaseFragment {
                 .where(ThingsDao.Properties.State.eq(2))
                 .list();
         doneList = Cache.instance()
-                .getThingsDaoDao()
+                .getThingsDao()
                 .queryBuilder()
 //                .where(ThingsDao.Properties.UserId.eq(UserId))//根据当前课表组id查询
                 .where(ThingsDao.Properties.Deleted.eq(false))//查询没有删除的
@@ -230,7 +230,7 @@ public class ToDoListFragment extends BaseFragment {
                 state = 1;
             }
             things.setState(state);
-            Cache.instance().getThingsDaoDao().update(things);
+            Cache.instance().getThingsDao().update(things);
 
         }
     }
@@ -269,7 +269,7 @@ public class ToDoListFragment extends BaseFragment {
                 @Override
                 public void onItemDeleteClick(BaseViewHolder viewHolder) {
                     Things things = (Things) viewHolder.getItemData();
-                    Cache.instance().getThingsDaoDao().delete(things);
+                    Cache.instance().getThingsDao().delete(things);
                     updateViews(true);
                 }
             });
