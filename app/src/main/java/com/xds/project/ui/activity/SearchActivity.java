@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import butterknife.BindView;
 import com.dl7.recycler.helper.RecyclerViewHelper;
 import com.xds.base.ui.activity.BaseActivity;
 import com.xds.base.utils.BlankUtil;
@@ -25,13 +25,10 @@ import com.xds.project.ui.adapter.SearchListAdapter;
 import com.xds.project.util.AppUtils;
 import com.xds.project.util.event.CourseDataChangeEvent;
 import com.xds.project.widget.PaperButton;
-
 import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Field;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * @TODO
@@ -230,7 +227,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private boolean checkUser() {
-        if (BaseApplication.getUser() == null || "普通用户".equals(BaseApplication.getUser().type)) {
+        if (BaseApplication.getUser() == null || "普通用户".equals(BaseApplication.getUser().getType())) {
             showToast("没有权限进行操作");
             return true;
         }

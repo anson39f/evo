@@ -32,8 +32,8 @@ public class LoginActivity extends BaseActivity implements OnFragmentInteraction
 
     private void setupViewPager(ViewPager viewPager) {
         TabViewPagerAdapter adapter = new TabViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(LoginFragment.getInstance("0"), "登录");
-        adapter.addFrag(RegisterFragment.getInstance("1"), "注册");
+        adapter.addFrag(LoginFragment.getInstance("0"), "Login");
+        adapter.addFrag(RegisterFragment.getInstance("1"), "Register");
         viewPager.setAdapter(adapter);
         loginTabs.setupWithViewPager(loginViewpager);
         if (isLogin) {

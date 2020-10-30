@@ -314,7 +314,7 @@ public class ToDoListFragment extends BaseFragment {
     }
 
     private boolean checkUser() {
-        if (user == null || "普通用户".equals(user.type)) {
+        if (user == null || "普通用户".equals(user.getType())) {
             showToast("没有权限进行操作");
             return true;
         }

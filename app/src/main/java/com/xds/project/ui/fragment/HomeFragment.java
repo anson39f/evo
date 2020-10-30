@@ -5,26 +5,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import butterknife.BindView;
+import butterknife.OnClick;
 import com.bumptech.glide.Glide;
 import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.project.BaseApplication;
 import com.xds.project.R;
 import com.xds.project.entity.User;
-import com.xds.project.ui.activity.AddClassActivity;
-import com.xds.project.ui.activity.AddKuActivity;
-import com.xds.project.ui.activity.AddTypeActivity;
-import com.xds.project.ui.activity.SearchActivity;
-import com.xds.project.ui.activity.TestCaseListActivity;
+import com.xds.project.ui.activity.*;
 import com.xds.project.util.ActivityTools;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * @author .
@@ -103,7 +97,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private boolean checkUser() {
-        if (user == null || "普通用户".equals(user.type)) {
+        if (user == null || "普通用户".equals(user.getType())) {
             showToast("没有权限进行操作");
             return true;
         }

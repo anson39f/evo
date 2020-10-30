@@ -144,7 +144,7 @@
 
         <TextView
             style="@style/tv_15sp"
-            android:text="退出登录"
+            android:text="login out"
             android:textColor="@color/white"/>
     </LinearLayout>
 </LinearLayout>

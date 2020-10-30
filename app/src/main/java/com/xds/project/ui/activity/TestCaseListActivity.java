@@ -5,7 +5,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-
+import butterknife.BindView;
 import com.dl7.recycler.helper.RecyclerViewHelper;
 import com.dl7.recycler.listener.OnRecyclerViewItemClickListener;
 import com.xds.base.net.ApiException;
@@ -20,8 +20,6 @@ import com.xds.project.widget.PaperButton;
 
 import java.io.File;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * 测试用例列表
@@ -144,7 +142,7 @@ public class TestCaseListActivity extends BaseActivity {
     }
 
     private boolean checkUser() {
-        if (BaseApplication.getUser() == null || "普通用户".equals(BaseApplication.getUser().type)) {
+        if (BaseApplication.getUser() == null || "普通用户".equals(BaseApplication.getUser().getType())) {
             showToast("没有权限进行操作");
             return true;
         }

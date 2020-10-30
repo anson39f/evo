@@ -19,6 +19,7 @@ public class Cache {
     private ClearableCookieJar cookieJar;
     private ThingsDao mThingsDao;
     private SelfStudyDao mSelfStudyDao;
+    private UserDao mUserDao;
 
     private Cache() {
     }
@@ -47,6 +48,7 @@ public class Cache {
         mCourseV2Dao = daoSession.getCourseV2Dao();
         mThingsDao = daoSession.getThingsDao();
         mSelfStudyDao = daoSession.getSelfStudyDao();
+        mUserDao = daoSession.getUserDao();
     }
 
     private void initLocalDao(Context context) {
@@ -146,6 +148,10 @@ public class Cache {
 
     public SelfStudyDao getSelfStudyDao() {
         return mSelfStudyDao;
+    }
+
+    public UserDao getUserDao() {
+        return mUserDao;
     }
 
     public Cache setCourseV2Dao(CourseV2Dao courseV2Dao) {

@@ -4,24 +4,20 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
-
+import butterknife.BindView;
+import butterknife.OnClick;
 import com.dl7.recycler.listener.OnRecyclerViewItemClickListener;
-import com.xds.base.net.ApiException;
-import com.xds.base.net.HttpListener;
 import com.xds.base.ui.SimItemBottomDialog;
 import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.base.utils.FormatUtils;
 import com.xds.project.R;
-import com.xds.project.api.remote.BaseAppApi;
+import com.xds.project.app.Cache;
 import com.xds.project.entity.User;
 import com.xds.project.util.ToastUtil;
 import com.xds.project.widget.ClearEditText;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * @author .
@@ -63,39 +59,22 @@ public class RegisterFragment extends BaseFragment {
         String phoneNumber = cEPhoneNumber.getText().toString();
         String type = tvType.getText().toString();
         if (account.equals("")) {
-            ToastUtil.show(mContext, "请输入账号");
+            ToastUtil.show(mContext, "Please enter the account");
         } else if (passwd.equals("")) {
-            ToastUtil.show(mContext, "请输入密码");
+            ToastUtil.show(mContext, "Please enter the password");
         } else if (phoneNumber.equals("")) {
-            ToastUtil.show(mContext, "请输入手机号");
+            ToastUtil.show(mContext, "Please enter the phone number");
         } else if (!FormatUtils.checkPhone(phoneNumber)) {
-            ToastUtil.show(mContext, "请输入正确的手机号码");
-        } else if (type.equals("")) {
-            ToastUtil.show(mContext, "请选择类型");
+            ToastUtil.show(mContext, "Please enter the correct password number");
+//        } else if (type.equals("")) {
+//            ToastUtil.show(mContext, "请选择类型");
         } else {
-            BaseAppApi.register(this, account, passwd, type, phoneNumber,
-                    new HttpListener<User>() {
-                        @Override
-                        public void onStart() {
-                            super.onStart();
-                            showDialog();
-                        }
-
-                        @Override
-                        public void onError(ApiException e) {
-                            super.onError(e);
-                            hideDialog();
-                            showToast(e.getMessage());
-                        }
-
-                        @Override
-                        public void onSuccess(User response) {
-                            hideDialog();
-                            ToastUtil.show(mContext, "注册成功");
-                            clearEditText();
-
-                        }
-                    });
+            User user = new User();
+            user.setUsername(account);
+            user.setPassword(passwd);
+            user.setPhone(phoneNumber);
+            user.setType("common user");
+            Cache.instance().getUserDao().insert(user);
         }
     }
 

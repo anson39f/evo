@@ -9,7 +9,6 @@ import android.text.Html;
 import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.ProgressBar;
-
 import com.dl7.recycler.adapter.BaseQuickAdapter;
 import com.dl7.recycler.adapter.BaseViewHolder;
 import com.xds.base.config.UriProvider;
@@ -23,6 +22,7 @@ import com.xds.project.entity.User;
 import com.xds.project.ui.activity.AddThingsActivity;
 import com.xds.project.ui.activity.TestCaseListActivity;
 import com.xds.project.util.ToastUtil;
+import okhttp3.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,12 +31,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
-
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 /**
  * @author .
@@ -92,7 +86,7 @@ public class TestCaseListAdapter extends BaseQuickAdapter<TestCase> {
         //        holder.setText(R.id.tvContent, Utils.stringformat("%s", item.content));
         holder.setText(R.id.tvContent, Html.fromHtml(item.content));
         User user = BaseApplication.getUser();
-        if (user == null || "普通用户".equals(user.type)) {
+        if (user == null || "普通用户".equals(user.getType())) {
             holder.setVisible(R.id.tvModify, false);
             holder.setVisible(R.id.tvDelete, false);
         } else {
