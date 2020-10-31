@@ -40,7 +40,7 @@ public class TestCaseListActivity extends BaseActivity {
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.activity_test_case_list;
+        return R.layout.activity_to_do_list;
     }
 
     @Override

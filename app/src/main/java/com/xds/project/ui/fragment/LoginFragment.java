@@ -7,13 +7,21 @@ import android.widget.RelativeLayout;
 import butterknife.BindView;
 import butterknife.OnClick;
 import com.xds.base.ui.fragment.BaseFragment;
+import com.xds.base.utils.JsonParser;
+import com.xds.base.utils.PreferencesUtils;
+import com.xds.project.BaseApplication;
 import com.xds.project.R;
+import com.xds.project.app.Cache;
+import com.xds.project.data.greendao.UserDao;
+import com.xds.project.entity.User;
 import com.xds.project.ui.activity.MainActivity;
 import com.xds.project.util.ActivityTools;
 import com.xds.project.util.SPUtils;
 import com.xds.project.util.ToastUtil;
 import com.xds.project.widget.EditTextWithDel;
 import com.xds.project.widget.PaperButton;
+
+import java.util.List;
 
 public class LoginFragment extends BaseFragment {
     @BindView(R.id.userph)
@@ -42,21 +50,26 @@ public class LoginFragment extends BaseFragment {
 
     @OnClick(R.id.bt_login)
     void login() {
-                ActivityTools.startToNextActivity(getContext(), MainActivity.class);
-                ToastUtil.show(mContext, "Login success");
-                finish();
+//        ActivityTools.startToNextActivity(getContext(), MainActivity.class);
+//        finish();
         if (userph.getText().toString().equals("")) {
             ToastUtil.show(mContext, "Please enter the account");
         } else if (userpass.getText().toString().equals("")) {
             ToastUtil.show(mContext, "Please enter the password");
         } else {
-//            List<User> user = Cache.instance().getUserDao().queryBuilder().where(UserDao.Properties.Username.eq(userph.getText().toString())).list();.
-//            BaseApplication.setUser(user.get(0));
-//            SPUtils.setLogin(mContext, true);
-//            PreferencesUtils.clear(getContext(), "user");
-//            PreferencesUtils.putString(getContext(), "user", JsonParser.toJson(user));
-//            ActivityTools.startToNextActivity(getActivity(), MainActivity.class);
-//            finish();
+            List<User> user = Cache.instance().getUserDao().queryBuilder().where(UserDao.Properties.Username.eq(userph.getText().toString())).list();
+            if (user != null && !user.isEmpty() && user.get(0).getPassword().equals(userpass.getText().toString())) {
+                BaseApplication.setUser(user.get(0));
+                SPUtils.setLogin(mContext, true);
+                PreferencesUtils.clear(getContext(), "user");
+                PreferencesUtils.putString(getContext(), "user", JsonParser.toJson(user.get(0)));
+                ActivityTools.startToNextActivity(getActivity(), MainActivity.class);
+                ToastUtil.show(mContext, "Login success");
+                finish();
+            } else {
+                ToastUtil.show(mContext, "Please enter the correct account and password");
+            }
+
         }
     }
 

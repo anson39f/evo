@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-
 import com.freelib.multiitem.adapter.BaseItemAdapter;
 import com.freelib.multiitem.adapter.holder.BaseViewHolder;
 import com.freelib.multiitem.adapter.holder.BaseViewHolderManager;
@@ -28,9 +27,9 @@ import com.xds.project.data.beanv2.Things;
 import com.xds.project.data.greendao.ThingsDao;
 import com.xds.project.entity.User;
 import com.xds.project.ui.activity.AddThingsActivity;
+import com.xds.project.util.LogUtil;
 import com.xds.project.util.event.ThingsEvent;
 import com.xds.project.widget.ThingsViewManager;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -209,7 +208,7 @@ public class ToDoListFragment extends BaseFragment {
             super.onDragFinish(recyclerView, itemRecyclerPos, itemPos);
             String text = String.format("拖动起始第%s个列表的第%s项 结束第%s个列表的第%s项 \n\n拖动数据:%s", originalRecyclerPosition,
                     originalItemPosition, itemRecyclerPos, itemPos, dragItemData);
-            showToast(text);
+            LogUtil.d(this, text);
 //            if (originalRecyclerPosition == 0) {
 //                todoList.remove(Math.max(0, originalItemPosition - 1));
 //            } else if (originalRecyclerPosition == 1) {

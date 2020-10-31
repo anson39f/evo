@@ -54,7 +54,7 @@
         android:gravity="center"
         widget:paper_color="@color/maincolor"
         widget:paper_corner_radius="19dp"
-        widget:paper_text="Confirm"
+        widget:paper_text="Start"
         widget:paper_text_color="@color/white"
         widget:paper_text_size="15sp" />
 </LinearLayout>

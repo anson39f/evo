@@ -68,9 +68,6 @@ public class AddTypeActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btAdd:
-                Intent intent = new Intent(getContext(), TypeListActivity.class);
-                intent.putExtra("type",1);
-                startActivityForResult(intent, 1000);
                 break;
             case R.id.btUpLoadLocal:
                 if (TextUtils.isEmpty(typeId)) {

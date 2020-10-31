@@ -17,10 +17,13 @@ import com.xds.project.app.Cache;
 import com.xds.project.app.Constant;
 import com.xds.project.data.beanv2.SelfStudy;
 import com.xds.project.service.ScreenListenerService;
+import com.xds.project.util.LogUtil;
 import com.xds.project.util.StatusBarUtils;
+import com.xds.project.util.event.UserEvent;
 import com.xds.project.widget.DialogHelper;
 import com.xds.project.widget.DialogListener;
 import com.xds.project.widget.PaperButton;
+import org.greenrobot.eventbus.EventBus;
 
 import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
@@ -35,8 +38,9 @@ public class LockActivity extends BaseActivity {
     @BindView(R.id.btTime)
     PaperButton btTime;
     private SelfStudy selfStudy;
-    private int sec;
+    private int sec = 60;
     private int min;
+    private int hour;
     private int mHasFocusTime;
     private boolean mHasFocus;
     private boolean over;
@@ -62,9 +66,9 @@ public class LockActivity extends BaseActivity {
         if (selfStudy == null) {
             return;
         }
-        min = selfStudy.getMinute();
-        sec = selfStudy.getSecond();
-        btTime.setText(String.format("%02d:%02d", min, sec));
+        hour = selfStudy.getMinute();
+        min = selfStudy.getSecond();
+        btTime.setText(String.format("%02d:%02d", hour, min));
     }
 
     @Override
@@ -77,50 +81,61 @@ public class LockActivity extends BaseActivity {
 
             @Override
             public void run() {
+                sec--;
+                if (sec % 5 == 0) {
+                    LogUtil.d("倒计时：", String.valueOf(sec));
+                }
+                if (sec == 0) {
+                    sec = 60;
+                } else {
+                    updateViews(true);
+                    return;
+                }
                 if (over || fail) {
                     return;
                 }
                 if (mHasFocus) {
                     mHasFocusTime = 0;
-                    if (sec == 0) {
-                        if (min == 0) {
+                    min--;
+                    if (min == 0) {
+                        if (hour == 0) {
 //                            showToast("Over");
                             over = true;
-                            Cache.instance().getSelfStudyDao().insert(selfStudy);
+                            btTime.setText(String.format("%02d:%02d", hour, min));
+                            stopService(new Intent(getActivity(), ScreenListenerService.class));
                             DialogHelper dialogHelper = new DialogHelper();
-                            dialogHelper.showNormalDialog(getActivity(), "Success?", "You studied for " + selfStudy.getMinute() + " minutes " + selfStudy.getSecond() + " second ", new DialogListener() {
+                            dialogHelper.showNormalDialog(getActivity(), "Success?", "You studied for " + selfStudy.getMinute() + " hours " + selfStudy.getSecond() + " minutes ", new DialogListener() {
                                 @Override
                                 public void onPositive(DialogInterface dialog, int which) {
                                     super.onPositive(dialog, which);
-                                    stopService(new Intent(getActivity(), ScreenListenerService.class));
                                     dialog.dismiss();
+                                    EventBus.getDefault().post(new UserEvent());
                                     finish();
                                 }
 
                                 @Override
                                 public void onNegative(DialogInterface dialog, int which) {
                                     super.onNegative(dialog, which);
-                                    stopService(new Intent(getActivity(), ScreenListenerService.class));
                                     dialog.dismiss();
+                                    EventBus.getDefault().post(new UserEvent());
                                     finish();
                                 }
                             });
+                            Cache.instance().getSelfStudyDao().insert(selfStudy);
                             return;
                         } else {
-                            sec = 59;
-                            min--;
+                            min = 60;
+                            hour--;
                         }
-                    } else {
-                        sec--;
                     }
-                    btTime.setText(String.format("%02d:%02d", min, sec));
+                    btTime.setText(String.format("%02d:%02d", hour, min));
                 } else {
                     mHasFocusTime++;
-                    if (mHasFocusTime >= 10) {
+                    if (mHasFocusTime >= 60) {
                         fail = true;
                         stopService(new Intent(getActivity(), ScreenListenerService.class));
                         DialogHelper dialogHelper = new DialogHelper();
-                        dialogHelper.showNormalDialog(getActivity(), "Fail", "exit the focus model more than 1 min", new DialogListener() {
+                        dialogHelper.showNormalDialog(getActivity(), "Fail", "exit the focus model more than 1 hour", new DialogListener() {
                             @Override
                             public void onPositive(DialogInterface dialog, int which) {
                                 super.onPositive(dialog, which);
@@ -208,15 +223,14 @@ public class LockActivity extends BaseActivity {
                 @Override
                 public void onPositive(DialogInterface dialog, int which) {
                     super.onPositive(dialog, which);
-                    stopService(new Intent(getActivity(), ScreenListenerService.class));
                     finish();
                 }
 
                 @Override
                 public void onNegative(DialogInterface dialog, int which) {
                     super.onNegative(dialog, which);
-                    stopService(new Intent(getActivity(), ScreenListenerService.class));
                     dialog.dismiss();
+                    finish();
                 }
             });
             return true;
@@ -233,4 +247,9 @@ public class LockActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(getActivity(), ScreenListenerService.class));
+    }
 }

@@ -2,7 +2,6 @@ package com.xds.project.app;
 
 import android.content.Context;
 
-import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.xds.project.data.beanv2.CourseV2;
 import com.xds.project.data.greendao.*;
 import com.xds.project.util.AppUtils;
@@ -16,7 +15,6 @@ public class Cache {
     private CourseV2Dao mCourseV2Dao;
     private CourseV2Dao mLocalDataDao;
 
-    private ClearableCookieJar cookieJar;
     private ThingsDao mThingsDao;
     private SelfStudyDao mSelfStudyDao;
     private UserDao mUserDao;
@@ -159,21 +157,4 @@ public class Cache {
         return this;
     }
 
-
-    public ClearableCookieJar getCookieJar() {
-        return cookieJar;
-    }
-
-    public Cache setCookieJar(ClearableCookieJar cookieJar) {
-        this.cookieJar = cookieJar;
-        return this;
-    }
-
-    public Cache clearCookie() {
-        if (cookieJar != null) {
-            cookieJar.clear();
-            cookieJar.clearSession();
-        }
-        return this;
-    }
 }

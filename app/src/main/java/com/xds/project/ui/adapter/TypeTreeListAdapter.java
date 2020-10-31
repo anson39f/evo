@@ -23,7 +23,7 @@ public class TypeTreeListAdapter extends BaseQuickAdapter<TypeBean> {
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.item_type_list;
+        return R.layout.item_todo_list;
     }
 
     public int getItemViewType(int position) {
@@ -41,14 +41,6 @@ public class TypeTreeListAdapter extends BaseQuickAdapter<TypeBean> {
         layoutParams.leftMargin = layoutParams.leftMargin * item.level;
         tvName.setLayoutParams(layoutParams);
         holder.setText(R.id.tvName, Utils.stringformat("%s", item.name));
-        holder.setOnClickListener(R.id.tvSelect, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onSubClickListener != null) {
-                    onSubClickListener.onItemClick(holder.getView(R.id.tvSelect), holder.getAdapterPosition());
-                }
-            }
-        });
     }
 
     private OnSubClickListener onSubClickListener;

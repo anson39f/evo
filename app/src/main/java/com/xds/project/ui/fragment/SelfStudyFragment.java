@@ -1,19 +1,18 @@
 package com.xds.project.ui.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-
+import butterknife.BindView;
+import butterknife.OnClick;
 import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.project.BaseApplication;
 import com.xds.project.R;
 import com.xds.project.entity.User;
 import com.xds.project.ui.activity.AddStudyActivity;
-import com.xds.project.ui.activity.SearchActivity;
+import com.xds.project.ui.activity.StudyHistoryActivity;
 import com.xds.project.util.ActivityTools;
 import com.xds.project.widget.PaperButton;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * @author .
@@ -73,7 +72,7 @@ public class SelfStudyFragment extends BaseFragment {
                 ActivityTools.startToNextActivity(getActivity(), AddStudyActivity.class);
                 break;
             case R.id.history:
-                ActivityTools.startToNextActivity(getActivity(), SearchActivity.class);
+                startActivity(new Intent(mContext, StudyHistoryActivity.class));
                 break;
         }
     }

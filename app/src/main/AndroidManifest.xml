@@ -15,10 +15,6 @@
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- 这个权限用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- 这个权限用于访问GPS定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
@@ -56,7 +52,7 @@
         <activity android:name=".ui.activity.AddClassActivity" />
         <activity android:name=".ui.activity.AddKuActivity" />
         <activity android:name=".ui.activity.TypeListActivity" />
-        <activity android:name=".ui.activity.KuListActivity" />
+        <activity android:name=".ui.activity.TodoListActivity" />
         <activity android:name=".ui.activity.AddTypeActivity" />
         <activity android:name=".ui.activity.AddStudyActivity" />
         <activity
@@ -67,6 +63,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.UserInfoEditActivity" />
+        <activity android:name=".ui.activity.ResetPassActivity" />
+        <activity android:name=".ui.activity.StudyHistoryActivity" />
+
         <service
                 android:name=".service.ScreenListenerService"
                 android:enabled="true"

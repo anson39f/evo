@@ -50,30 +50,29 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="@drawable/bg_border_color_black">
 
         <ImageView
-                android:id="@+id/usericon3"
+                android:id="@+id/usericon1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:src="@mipmap/ic_authority" />
+                android:src="@mipmap/ic_acount" />
 
-        <TextView
-                android:id="@+id/tvType"
+        <com.xds.project.widget.ClearEditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:gravity="center_vertical"
-                android:layout_toRightOf="@+id/usericon3"
+                android:layout_toRightOf="@+id/usericon1"
                 android:background="@null"
-                android:hint="请选择类型"
-                android:inputType="text"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textSize="13sp" />

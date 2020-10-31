@@ -80,10 +80,4 @@ public class LoginActivity extends BaseActivity implements OnFragmentInteraction
         EnvSettingActivity.launcher(this);
     }
 
-    //点击注册
-    public void toRegister(View view) {
-        addFragment(R.id.content,
-                RegisterFragment.getInstance(loginViewpager.getCurrentItem() + ""),
-                "RegisterFragment");
-    }
 }

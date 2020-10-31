@@ -86,7 +86,6 @@ public class HomeFragment extends BaseFragment {
             case R.id.tvKu:
                 if (checkUser())
                     return;
-                ActivityTools.startToNextActivity(getActivity(), AddKuActivity.class);
                 break;
             case R.id.tvAddType:
                 if (checkUser())
