@@ -87,7 +87,8 @@ public class Course extends CourseAncestor implements Comparable<Course> {
         if (TextUtils.isEmpty(getClassRoom())) {
             setText(getName());
         } else {
-            setText(getName() + "\n@" + getClassRoom());
+            setText(getName());
+//            setText(getName() + "\n@" + getClassRoom());
         }
     }
 

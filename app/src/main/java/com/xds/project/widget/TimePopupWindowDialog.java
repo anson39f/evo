@@ -17,23 +17,27 @@ import java.util.ArrayList;
 public class TimePopupWindowDialog implements View.OnClickListener {
     private int mTimeStart;
     private int mTimeEnd;
+    private ArrayList<String> times;
 
 
     public interface SelectTimeCallback {
         void onSelected(int mTimeStart, int mTimeEnd);
     }
 
+
     public void showSelectTimeDialog(Activity activity, final SelectTimeCallback callback) {
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_select_time, null);
+
 
         final ArrayList<String> times = new ArrayList<>();
 
         WheelView wvStart = (WheelView) view.findViewById(R.id.wv_start_node);
         final WheelView wvEnd = (WheelView) view.findViewById(R.id.wv_end_node);
-
         int maxNode = 60;
-        for (int i = 0; i < maxNode; i++) {
-            times.add(String.format("%02d", i));
+        for (int i = 10; i <= maxNode; i++) {
+            if (i % 10 == 0) {
+                times.add(String.format("%02d", i));
+            }
         }
 
         wvStart.setItems(times);
@@ -45,7 +49,7 @@ public class TimePopupWindowDialog implements View.OnClickListener {
         wvStart.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
             @Override
             public void onSelected(int selectedIndex, String item) {
-                mTimeStart = selectedIndex - 1;
+                mTimeStart = selectedIndex * 10;
                 //                if (mTimeStart > mTimeEnd) {
                 //                    wvEnd.setSeletion(mTimeStart - 1);
                 //                    return;

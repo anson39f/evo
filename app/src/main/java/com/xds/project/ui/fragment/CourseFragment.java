@@ -74,9 +74,9 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     private CourseView mCourseViewV2;
     private LinearLayout mLayoutWeekGroup;
     private LinearLayout mLayoutNodeGroup;
-    private int WEEK_TEXT_SIZE = 10;
-    private int NODE_TEXT_SIZE = 9;
-    private int NODE_WIDTH = 25;
+    private int WEEK_TEXT_SIZE = 12;
+    private int NODE_TEXT_SIZE = 12;
+    private int NODE_WIDTH = 40;
     private TextView mMMonthTextView;
     private RecyclerView mRvSelectWeek;
     private int mHeightSelectWeek;
@@ -151,10 +151,11 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
 
     private void initWeekTitle() {
         mTvWeekCount = findViewById(R.id.tv_toolbar_subtitle);
+        mTvWeekCount.setVisibility(View.VISIBLE);
         mTvWeekCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //                weekTitle(v);
+                weekTitle(v);
             }
         });
         TextView tvTitle = findViewById(R.id.tv_toolbar_title);
@@ -182,7 +183,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     @SuppressLint("SetTextI18n")
     private void updateCurrentWeek() {
         mCurrentWeekCount = AppUtils.getCurrentWeek(getActivity());
-        mTvWeekCount.setText("第" + mCurrentWeekCount + "周");
+        mTvWeekCount.setText(mCurrentWeekCount + " week");
         mCourseViewV2.setCurrentIndex(mCurrentWeekCount);
     }
 
@@ -223,7 +224,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
                 RecyclerView.HORIZONTAL, false));
         ArrayList<String> strings = new ArrayList<>();
         for (int i = 1; i <= 25; i++) {
-            strings.add("第" + i + "周");
+            strings.add(i + " week");
         }
         SelectWeekAdapter selectWeekAdapter = new SelectWeekAdapter(getActivity(), strings);
         mRvSelectWeek.setAdapter(selectWeekAdapter);
@@ -246,7 +247,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
                 AppUtils.PreferencesCurrentWeek(getContext(), mCurrentWeekCount);
                 mCourseViewV2.setCurrentIndex(mCurrentWeekCount);
                 mCourseViewV2.resetView();
-                mTvWeekCount.setText("第" + mCurrentWeekCount + "周");
+                mTvWeekCount.setText(mCurrentWeekCount + " week");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

@@ -161,9 +161,9 @@ public class CourseView extends FrameLayout {
 
         if (course.getActiveStatus()) {
             addView(itemView);
-        } else {
+        } /*else {
             addView(itemView, 0);
-        }
+        }*/
     }
 
     private void updateItemStatus(CourseAncestor course) {
@@ -176,12 +176,12 @@ public class CourseView extends FrameLayout {
 
         if (course.getActiveStatus()) {
             drawable = getShowBgDrawable(course.getColor(), course.getColor() & 0x80FFFFFF);
+            tv.setBackground(drawable);
         } else {
-            drawable = getShowBgDrawable(mInactiveBackgroundColor, mInactiveBackgroundColor & 0x80FFFFFF);
-            tv.setTextColor(mInactiveTextColor);
+//            drawable = getShowBgDrawable(mInactiveBackgroundColor, mInactiveBackgroundColor & 0x80FFFFFF);
+//            tv.setTextColor(mInactiveTextColor);
         }
-        tv.setBackground(drawable);
-
+//        tv.setBackground(drawable);
     }
 
     private StateListDrawable getShowBgDrawable(int color, int color2) {

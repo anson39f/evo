@@ -6,7 +6,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import com.xds.base.ui.SimItemBottomDialog;
 import com.xds.base.ui.fragment.BaseFragment;
-import com.xds.base.utils.FormatUtils;
 import com.xds.project.R;
 import com.xds.project.app.Cache;
 import com.xds.project.data.greendao.UserDao;
@@ -60,8 +59,8 @@ public class RegisterFragment extends BaseFragment {
             ToastUtil.show(mContext, "Please enter the password");
         } else if (phoneNumber.equals("")) {
             ToastUtil.show(mContext, "Please enter the phone number");
-        } else if (!FormatUtils.checkPhone(phoneNumber)) {
-            ToastUtil.show(mContext, "Please enter the correct password number");
+//        } else if (!FormatUtils.checkPhone(phoneNumber)) {
+//            ToastUtil.show(mContext, "Please enter the correct phone number");
 //        } else if (type.equals("")) {
 //            ToastUtil.show(mContext, "请选择类型");
         } else {

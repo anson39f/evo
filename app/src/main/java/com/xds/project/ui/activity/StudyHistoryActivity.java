@@ -10,6 +10,7 @@ import com.xds.base.ui.activity.BaseActivity;
 import com.xds.project.R;
 import com.xds.project.app.Cache;
 import com.xds.project.data.beanv2.SelfStudy;
+import com.xds.project.data.greendao.SelfStudyDao;
 import com.xds.project.ui.adapter.StuyHistoryListAdapter;
 
 import java.util.List;
@@ -56,7 +57,7 @@ public class StudyHistoryActivity extends BaseActivity {
     @Override
     protected void updateViews(boolean isRefresh) {
 
-        List<SelfStudy> list = Cache.instance().getSelfStudyDao().queryBuilder()
+        List<SelfStudy> list = Cache.instance().getSelfStudyDao().queryBuilder().orderDesc(SelfStudyDao.Properties.Date)
 //                .where(SelfStudyDao.Properties.State.eq(1))//根据当前课表组id查询
 //                .where(SelfStudyDao.Properties.Deleted.eq(false))//查询没有删除的
 //                .orderDesc(SelfStudyDao.Properties.Date)

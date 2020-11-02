@@ -86,7 +86,8 @@ public class CourseV2 extends CourseAncestor {
         if (TextUtils.isEmpty(getCouLocation())) {
             setText(getCouName());
         } else {
-            setText(getCouName() + "\n@" + getCouLocation());
+            setText(getCouName());
+//            setText(getCouName() + "\n@" + getCouLocation());
         }
 
         return this;

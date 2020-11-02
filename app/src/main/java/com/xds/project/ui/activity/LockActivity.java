@@ -17,7 +17,6 @@ import com.xds.project.app.Cache;
 import com.xds.project.app.Constant;
 import com.xds.project.data.beanv2.SelfStudy;
 import com.xds.project.service.ScreenListenerService;
-import com.xds.project.util.LogUtil;
 import com.xds.project.util.StatusBarUtils;
 import com.xds.project.util.event.UserEvent;
 import com.xds.project.widget.DialogHelper;
@@ -40,11 +39,11 @@ public class LockActivity extends BaseActivity {
     private SelfStudy selfStudy;
     private int sec = 60;
     private int min;
-    private int hour;
     private int mHasFocusTime;
     private boolean mHasFocus;
     private boolean over;
     private boolean fail;
+    private boolean isLock;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,15 +59,18 @@ public class LockActivity extends BaseActivity {
     @Override
     protected void initViews() {
         StatusBarUtils.setStatusFullScreen(LockActivity.this);
-        Intent service = new Intent(this, ScreenListenerService.class);
-        startService(service);
         selfStudy = (SelfStudy) getIntent().getSerializableExtra("data");
         if (selfStudy == null) {
             return;
         }
-        hour = selfStudy.getMinute();
-        min = selfStudy.getSecond();
-        btTime.setText(String.format("%02d:%02d", hour, min));
+        min = selfStudy.getMinute();
+        sec = selfStudy.getSecond();
+        btTime.setText(String.format("%02d:%02d", min, sec));
+        if (selfStudy.getModel() == 0) {
+            isLock = true;
+            Intent service = new Intent(this, ScreenListenerService.class);
+            startService(service);
+        }
     }
 
     @Override
@@ -81,27 +83,23 @@ public class LockActivity extends BaseActivity {
 
             @Override
             public void run() {
-                sec--;
-                if (sec % 5 == 0) {
-                    LogUtil.d("倒计时：", String.valueOf(sec));
-                }
-                if (sec == 0) {
-                    sec = 60;
-                } else {
-                    updateViews(true);
-                    return;
-                }
                 if (over || fail) {
                     return;
                 }
                 if (mHasFocus) {
-                    mHasFocusTime = 0;
-                    min--;
-                    if (min == 0) {
-                        if (hour == 0) {
+                    if (mHasFocusTime >= 60) {
+                        showOverTimeDialog();
+                        return;
+                    } else {
+                        mHasFocusTime = 0;
+                    }
+                    if (sec == 0) {
+                        sec = 59;
+                        min--;
+                        if (min == 0) {
 //                            showToast("Over");
                             over = true;
-                            btTime.setText(String.format("%02d:%02d", hour, min));
+                            btTime.setText(String.format("%02d:%02d", min, sec));
                             stopService(new Intent(getActivity(), ScreenListenerService.class));
                             DialogHelper dialogHelper = new DialogHelper();
                             dialogHelper.showNormalDialog(getActivity(), "Success?", "You studied for " + selfStudy.getMinute() + " hours " + selfStudy.getSecond() + " minutes ", new DialogListener() {
@@ -121,41 +119,44 @@ public class LockActivity extends BaseActivity {
                                     finish();
                                 }
                             });
+                            selfStudy.setState(1);
                             Cache.instance().getSelfStudyDao().insert(selfStudy);
                             return;
-                        } else {
-                            min = 60;
-                            hour--;
                         }
+                    } else {
+                        sec--;
                     }
-                    btTime.setText(String.format("%02d:%02d", hour, min));
+                    btTime.setText(String.format("%02d:%02d", min, sec));
                 } else {
                     mHasFocusTime++;
-                    if (mHasFocusTime >= 60) {
-                        fail = true;
-                        stopService(new Intent(getActivity(), ScreenListenerService.class));
-                        DialogHelper dialogHelper = new DialogHelper();
-                        dialogHelper.showNormalDialog(getActivity(), "Fail", "exit the focus model more than 1 hour", new DialogListener() {
-                            @Override
-                            public void onPositive(DialogInterface dialog, int which) {
-                                super.onPositive(dialog, which);
-                                dialog.dismiss();
-                                finish();
-                            }
-
-                            @Override
-                            public void onNegative(DialogInterface dialog, int which) {
-                                super.onNegative(dialog, which);
-                                dialog.dismiss();
-                                finish();
-                            }
-                        });
-                        return;
-                    }
                 }
                 updateViews(true);
             }
+
         }, 1000);
+    }
+
+    private void showOverTimeDialog() {
+        fail = true;
+        stopService(new Intent(getActivity(), ScreenListenerService.class));
+        DialogHelper dialogHelper = new DialogHelper();
+        dialogHelper.showNormalDialog(getActivity(), "Fail", "exit the focus model more than 1 hour", new DialogListener() {
+            @Override
+            public void onPositive(DialogInterface dialog, int which) {
+                super.onPositive(dialog, which);
+                dialog.dismiss();
+                finish();
+            }
+
+            @Override
+            public void onNegative(DialogInterface dialog, int which) {
+                super.onNegative(dialog, which);
+                dialog.dismiss();
+                selfStudy.setState(0);
+                Cache.instance().getSelfStudyDao().insert(selfStudy);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -182,9 +183,13 @@ public class LockActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ActivityManager activityManager = (ActivityManager) getApplicationContext()
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        activityManager.moveTaskToFront(getTaskId(), 0);
+
+        if (isLock) {
+            ActivityManager activityManager = (ActivityManager) getApplicationContext()
+                    .getSystemService(Context.ACTIVITY_SERVICE);
+            activityManager.moveTaskToFront(getTaskId(), 0);
+        }
+
     }
 
     @Override
@@ -194,20 +199,18 @@ public class LockActivity extends BaseActivity {
         if (fail || over) {
             return;
         }
-        if (!hasFocus) {
+        if (!hasFocus && isLock) {
+//            if (selfStudy != null && selfStudy.getModel() == 0) {
             //在recent按下时 发送一个recent事件 使recent失效
             Intent intent = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             intent.putExtra("reason", "globalactions");
             sendBroadcast(intent);
 
-//            ActivityManager activityManager = (ActivityManager) getApplicationContext()
-//                    .getSystemService(Context.ACTIVITY_SERVICE);
-//            activityManager.moveTaskToFront(getTaskId(), 0);
-
             Intent in = new Intent(getContext(), LockActivity.class);
             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             in.putExtra(Constant.JUMP_FROM, Constant.JUMP_FROM_SCREEN_LISTENER);
             startActivity(in);
+//            }
         }
     }
 
@@ -223,6 +226,13 @@ public class LockActivity extends BaseActivity {
                 @Override
                 public void onPositive(DialogInterface dialog, int which) {
                     super.onPositive(dialog, which);
+                    dialog.dismiss();
+                    if (selfStudy != null) {
+                        selfStudy.setState(0);
+                        Cache.instance().getSelfStudyDao().insert(selfStudy);
+                    }
+                    stopService(new Intent(getActivity(), ScreenListenerService.class));
+                    isLock = false;
                     finish();
                 }
 
@@ -230,7 +240,7 @@ public class LockActivity extends BaseActivity {
                 public void onNegative(DialogInterface dialog, int which) {
                     super.onNegative(dialog, which);
                     dialog.dismiss();
-                    finish();
+
                 }
             });
             return true;

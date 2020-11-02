@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:widget="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        xmlns:widget="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <com.xds.project.widget.PaperButton
-        android:id="@+id/addHistory"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        widget:paper_color="@color/maincolor"
-        widget:paper_corner_radius="5dp"
-        widget:paper_text="Add to history"
-        widget:paper_text_color="@color/white"
-        widget:paper_text_size="12sp" />
+            android:id="@+id/addHistory"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            widget:paper_color="@color/maincolor"
+            widget:paper_corner_radius="5dp"
+            widget:paper_text="Add to history"
+            widget:paper_text_color="@color/white"
+            widget:paper_text_size="12sp" />
+
+    <com.xds.project.widget.PaperButton
+            android:id="@+id/historyReview"
+            android:layout_width="120dp"
+            android:layout_below="@+id/addHistory"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            widget:paper_color="@color/maincolor"
+            widget:paper_corner_radius="5dp"
+            widget:paper_text="History Review"
+            widget:paper_text_color="@color/white"
+            widget:paper_text_size="12sp" />
 </RelativeLayout>

@@ -27,6 +27,8 @@ import com.xds.project.data.beanv2.Things;
 import com.xds.project.data.greendao.ThingsDao;
 import com.xds.project.entity.User;
 import com.xds.project.ui.activity.AddThingsActivity;
+import com.xds.project.ui.activity.TodoListActivity;
+import com.xds.project.util.ActivityTools;
 import com.xds.project.util.LogUtil;
 import com.xds.project.util.event.ThingsEvent;
 import com.xds.project.widget.ThingsViewManager;
@@ -113,6 +115,12 @@ public class ToDoListFragment extends BaseFragment {
                     updateViews(true);
                     showToast("add success!");
                 }
+            }
+        });
+        foot.findViewById(R.id.historyReview).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityTools.startToNextActivity(getActivity(), TodoListActivity.class);
             }
         });
     }

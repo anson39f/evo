@@ -38,7 +38,7 @@ public class AddStudyActivity extends BaseActivity {
     @BindView(R.id.btModify)
     PaperButton btModify;
     private List<SimItemBottomDialog.CommonEntity> commonEntities;
-    private int level;
+    private int level = 0;
     private int mTimeStart;
     private int mTimeEnd;
 
@@ -56,6 +56,7 @@ public class AddStudyActivity extends BaseActivity {
 //                add(new SimItemBottomDialog.CommonEntity("low mode"));
 //                add(new SimItemBottomDialog.CommonEntity("middle mode"));
                 add(new SimItemBottomDialog.CommonEntity("focus mode"));
+                add(new SimItemBottomDialog.CommonEntity("light mode"));
             }
         };
         tvType.setText("focus mode");
@@ -97,7 +98,7 @@ public class AddStudyActivity extends BaseActivity {
                         LockActivity.class);
                 SelfStudy selfStudy = new SelfStudy();
                 selfStudy.setContent(content);
-                selfStudy.setModel(3);
+                selfStudy.setModel(level);
                 selfStudy.setMinute(this.mTimeStart);
                 selfStudy.setSecond(this.mTimeEnd);
                 selfStudy.setDate(new Date());
@@ -134,12 +135,12 @@ public class AddStudyActivity extends BaseActivity {
 
     public String getModelName(int level) {
         switch (level) {
-            case 2:
+            case 0:
                 return "focus mode";
             case 1:
-                return "middle mode";
+                return "light mode";
             default:
-                return "low mode";
+                return "focus mode";
         }
     }
 
