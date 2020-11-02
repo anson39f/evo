@@ -1,208 +1,242 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/StatusColorStyle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f8f8f8"
-        android:orientation="vertical">
+    style="@style/StatusColorStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f8f8f8"
+    android:orientation="vertical">
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal"
-            android:padding="20dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="20dp">
 
 
         <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_center_user"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="45dp"
-                android:clickable="false"
-                android:src="@mipmap/icon_head" />
+            android:id="@+id/iv_center_user"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="45dp"
+            android:clickable="false"
+            android:src="@mipmap/icon_head" />
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="vertical"
-                android:padding="20dp"
-                android:scaleType="fitXY">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:scaleType="fitXY">
 
             <TextView
-                    android:id="@+id/tvName"
-                    style="@style/tv_17sp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                android:id="@+id/tvName"
+                style="@style/tv_17sp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
             <TextView
-                    android:id="@+id/tvGender"
-                    style="@style/tv_13sp"
-                    android:layout_marginTop="10dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textStyle="normal" />
+                android:id="@+id/tvGender"
+                style="@style/tv_13sp"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textStyle="normal" />
 
             <TextView
-                    android:id="@+id/tv_center_tel"
-                    style="@style/tv_13sp"
-                    android:layout_marginTop="6dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textStyle="normal" />
+                android:id="@+id/tv_center_tel"
+                style="@style/tv_13sp"
+                android:layout_marginTop="6dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textStyle="normal" />
 
         </LinearLayout>
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
-                    android:id="@+id/tvStudyTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="@dimen/text_13"
-                    android:padding="10dp"
-                    android:textStyle="bold"
-                    android:background="@color/color_jiu"
-                    android:textColor="@color/text_main" />
+                android:id="@+id/tvStudyTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_jiu"
+                android:padding="10dp"
+                android:text=""
+                android:textColor="@color/text_main"
+                android:textSize="@dimen/text_13"
+                android:textStyle="bold" />
 
             <LinearLayout
-                    style="@style/width_match"
-                    android:layout_marginTop="25dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
+                style="@style/width_match"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/ll_edit_info"
+                    style="@style/height_48"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
                     android:visibility="visible">
 
-                <LinearLayout
-                        android:id="@+id/ll_edit_info"
-                        style="@style/height_48"
-                        android:layout_marginBottom="1dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="20dp"
-                        android:visibility="visible">
-
                     <TextView
-                            style="@style/tv_15sp"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:gravity="left"
-                            android:text="Personal Detail"
-                            android:textColor="#6F6F6F" />
+                        style="@style/tv_15sp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Personal Detail"
+                        android:textColor="#6F6F6F" />
 
                     <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:src="@mipmap/ic_next" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/ic_next" />
                 </LinearLayout>
 
                 <LinearLayout
-                        android:id="@+id/ll_password"
-                        style="@style/height_48"
-                        android:layout_marginBottom="1dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="20dp"
-                        android:visibility="visible">
+                    android:id="@+id/ll_password"
+                    style="@style/height_48"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:visibility="visible">
 
                     <TextView
-                            style="@style/tv_15sp"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:gravity="left"
-                            android:text="Password Reset"
-                            android:textColor="#6F6F6F" />
+                        style="@style/tv_15sp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Password Reset"
+                        android:textColor="#6F6F6F" />
 
                     <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:src="@mipmap/ic_next" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/ic_next" />
                 </LinearLayout>
 
                 <LinearLayout
-                        android:id="@+id/ll_todo"
-                        style="@style/height_48"
-                        android:layout_marginBottom="1dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="20dp"
-                        android:visibility="visible">
+                    android:id="@+id/ll_todo"
+                    style="@style/height_48"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:visibility="visible">
 
                     <TextView
-                            style="@style/tv_15sp"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:gravity="left"
-                            android:text="To-Do"
-                            android:textColor="#6F6F6F" />
+                        style="@style/tv_15sp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="To-Do"
+                        android:textColor="#6F6F6F" />
 
                     <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:src="@mipmap/ic_next" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/ic_next" />
                 </LinearLayout>
 
                 <LinearLayout
-                        android:id="@+id/ll_study_history"
-                        style="@style/height_48"
-                        android:layout_marginBottom="1dp"
-                        android:background="@color/white"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="20dp"
-                        android:visibility="visible">
+                    android:id="@+id/ll_study_history"
+                    style="@style/height_48"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:visibility="visible">
 
                     <TextView
-                            style="@style/tv_15sp"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:gravity="left"
-                            android:text="Study History"
-                            android:textColor="#6F6F6F" />
+                        style="@style/tv_15sp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Study History"
+                        android:textColor="#6F6F6F" />
 
                     <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:src="@mipmap/ic_next" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/ic_next" />
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:id="@+id/ll_power"
+                    style="@style/height_48"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="20dp"
+                    android:visibility="visible">
+
+                    <TextView
+                        style="@style/tv_15sp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="Power Save Mode"
+                        android:textColor="#6F6F6F" />
+
+                    <TextView
+                        android:id="@+id/tvPower"
+                        style="@style/tv_15sp"
+                        android:layout_width="0dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="off"
+                        android:textColor="#6F6F6F" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@mipmap/ic_next" />
+                </LinearLayout>
             </LinearLayout>
 
             <View style="@style/height_0" />
 
             <LinearLayout
-                    android:id="@+id/ll_center_logout"
-                    style="@style/height_48"
-                    android:layout_marginBottom="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/red"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                android:id="@+id/ll_center_logout"
+                style="@style/height_48"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="50dp"
+                android:background="@color/red"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
-                        style="@style/tv_15sp"
-                        android:text="Login out"
-                        android:textColor="@color/white" />
+                    style="@style/tv_15sp"
+                    android:text="Login out"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
         </LinearLayout>

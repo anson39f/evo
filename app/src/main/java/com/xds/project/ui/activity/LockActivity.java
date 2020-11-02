@@ -9,8 +9,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
-import butterknife.BindView;
-import butterknife.OnClick;
+
 import com.xds.base.ui.activity.BaseActivity;
 import com.xds.project.R;
 import com.xds.project.app.Cache;
@@ -22,7 +21,11 @@ import com.xds.project.util.event.UserEvent;
 import com.xds.project.widget.DialogHelper;
 import com.xds.project.widget.DialogListener;
 import com.xds.project.widget.PaperButton;
+
 import org.greenrobot.eventbus.EventBus;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
@@ -65,6 +68,8 @@ public class LockActivity extends BaseActivity {
         }
         min = selfStudy.getMinute();
         sec = selfStudy.getSecond();
+        min = 0;
+        sec = 10;
         btTime.setText(String.format("%02d:%02d", min, sec));
         if (selfStudy.getModel() == 0) {
             isLock = true;
@@ -94,15 +99,13 @@ public class LockActivity extends BaseActivity {
                         mHasFocusTime = 0;
                     }
                     if (sec == 0) {
-                        sec = 59;
-                        min--;
                         if (min == 0) {
-//                            showToast("Over");
+                            //                            showToast("Over");
                             over = true;
                             btTime.setText(String.format("%02d:%02d", min, sec));
                             stopService(new Intent(getActivity(), ScreenListenerService.class));
                             DialogHelper dialogHelper = new DialogHelper();
-                            dialogHelper.showNormalDialog(getActivity(), "Success?", "You studied for " + selfStudy.getMinute() + " hours " + selfStudy.getSecond() + " minutes ", new DialogListener() {
+                            dialogHelper.showNormalDialog(getActivity(), "Success?", "You studied for " + selfStudy.getMinute() + " minute ", new DialogListener() {
                                 @Override
                                 public void onPositive(DialogInterface dialog, int which) {
                                     super.onPositive(dialog, which);
@@ -122,7 +125,10 @@ public class LockActivity extends BaseActivity {
                             selfStudy.setState(1);
                             Cache.instance().getSelfStudyDao().insert(selfStudy);
                             return;
+                        } else {
+                            min--;
                         }
+                        sec = 59;
                     } else {
                         sec--;
                     }
@@ -140,7 +146,7 @@ public class LockActivity extends BaseActivity {
         fail = true;
         stopService(new Intent(getActivity(), ScreenListenerService.class));
         DialogHelper dialogHelper = new DialogHelper();
-        dialogHelper.showNormalDialog(getActivity(), "Fail", "exit the focus model more than 1 hour", new DialogListener() {
+        dialogHelper.showNormalDialog(getActivity(), "Fail", "exit the focus model more than 1 minute", new DialogListener() {
             @Override
             public void onPositive(DialogInterface dialog, int which) {
                 super.onPositive(dialog, which);
@@ -162,10 +168,10 @@ public class LockActivity extends BaseActivity {
     @Override
     public void onAttachedToWindow() {
         //        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
-//        getWindow().addFlags(5);
-//
-//        this.getWindow().addFlags(FLAG_HOMEKEY_DISPATCHED);
-//        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+        //        getWindow().addFlags(5);
+        //
+        //        this.getWindow().addFlags(FLAG_HOMEKEY_DISPATCHED);
+        //        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
         super.onAttachedToWindow();
     }
 
@@ -174,11 +180,11 @@ public class LockActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-//    @Override
-//    public boolean dispatchKeyEvent(KeyEvent event) {
-//        // 返回true，不响应其他key
-//        return true;
-//    }
+    //    @Override
+    //    public boolean dispatchKeyEvent(KeyEvent event) {
+    //        // 返回true，不响应其他key
+    //        return true;
+    //    }
 
     @Override
     protected void onPause() {
@@ -200,7 +206,7 @@ public class LockActivity extends BaseActivity {
             return;
         }
         if (!hasFocus && isLock) {
-//            if (selfStudy != null && selfStudy.getModel() == 0) {
+            //            if (selfStudy != null && selfStudy.getModel() == 0) {
             //在recent按下时 发送一个recent事件 使recent失效
             Intent intent = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             intent.putExtra("reason", "globalactions");
@@ -210,7 +216,7 @@ public class LockActivity extends BaseActivity {
             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             in.putExtra(Constant.JUMP_FROM, Constant.JUMP_FROM_SCREEN_LISTENER);
             startActivity(in);
-//            }
+            //            }
         }
     }
 

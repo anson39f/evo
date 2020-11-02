@@ -1,11 +1,16 @@
 package com.xds.project.ui.fragment;
 
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.OnClick;
+
 import com.bumptech.glide.Glide;
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
@@ -25,16 +30,24 @@ import com.xds.project.R;
 import com.xds.project.app.Cache;
 import com.xds.project.data.beanv2.SelfStudy;
 import com.xds.project.entity.User;
-import com.xds.project.ui.activity.*;
+import com.xds.project.ui.activity.LoginActivity;
+import com.xds.project.ui.activity.ResetPassActivity;
+import com.xds.project.ui.activity.StudyHistoryActivity;
+import com.xds.project.ui.activity.TodoListActivity;
+import com.xds.project.ui.activity.UserInfoEditActivity;
 import com.xds.project.util.LogUtil;
 import com.xds.project.util.SPUtils;
 import com.xds.project.util.event.UserEvent;
-import de.hdodenhof.circleimageview.CircleImageView;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * @author .
@@ -47,6 +60,8 @@ public class MeFragment extends BaseFragment implements TakePhoto.TakeResultList
     TextView tvName;
     @BindView(R.id.tv_center_tel)
     TextView tvCenterTel;
+    @BindView(R.id.tvPower)
+    TextView tvPower;
     @BindView(R.id.tvStudyTime)
     TextView tvStudyTime;
     @BindView(R.id.iv_center_user)
@@ -58,6 +73,7 @@ public class MeFragment extends BaseFragment implements TakePhoto.TakeResultList
     private InvokeParam invokeParam;
     private String headUrl;
     private User user;
+    private boolean isOn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,18 +132,24 @@ public class MeFragment extends BaseFragment implements TakePhoto.TakeResultList
         tvGender.setText(String.format("Email：%s", user.getEmail()));
         List<SelfStudy> list = Cache.instance().getSelfStudyDao().queryBuilder().list();
         if (list != null) {
-            int hours = 0;
             int minutes = 0;
+            int seconds = 0;
             for (SelfStudy selfStudy : list) {
-                hours += selfStudy.getMinute();
-                minutes += selfStudy.getSecond();
+                if (selfStudy.getState() == 1) {
+                    minutes += selfStudy.getMinute();
+                    seconds += selfStudy.getSecond();
+                }
             }
-            String and = hours > 0 && minutes > 0 ? "and" : "";
-            String hoursString = hours > 0 ? String.format("%s hours", String.valueOf(hours)) : "";
-            String minutesString = minutes > 0 ? String.format(" %s %s minutes", and, String.valueOf(minutes)) : "";
-            tvStudyTime.setText(Utils.stringformat("Total Time in Studying:%s %s", hoursString, minutesString));
+            String and = minutes > 0 && seconds > 0 ? "and" : "";
+            String minutesString = minutes > 0 ? String.format("%s minutes", String.valueOf(minutes)) : "";
+            String secondsString = seconds > 0 ? String.format(" %s %s seconds", and, String.valueOf(seconds)) : "";
+            if (minutes == 0 && seconds == 0) {
+                tvStudyTime.setText(Utils.stringformat("Total Time in Studying : 0 minutes"));
+            } else {
+                tvStudyTime.setText(Utils.stringformat("Total Time in Studying:%s %s", minutesString, secondsString));
+            }
         } else {
-            tvStudyTime.setText(Utils.stringformat("Total Time in Studying:0 hours"));
+            tvStudyTime.setText(Utils.stringformat("Total Time in Studying : 0 minutes"));
         }
     }
 
@@ -167,29 +189,29 @@ public class MeFragment extends BaseFragment implements TakePhoto.TakeResultList
         return type;
     }
 
-    @OnClick({R.id.iv_center_user, R.id.ll_password, R.id.ll_edit_info, R.id.ll_todo, R.id.ll_study_history, R.id.ll_center_logout})
+    @OnClick({R.id.ll_power, R.id.iv_center_user, R.id.ll_password, R.id.ll_edit_info, R.id.ll_todo, R.id.ll_study_history, R.id.ll_center_logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_center_user:
-//                RxPermissions rxPermissions = new RxPermissions(getActivity());
-//                rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
-//                    @Override
-//                    public void accept(Boolean aBoolean) throws Exception {
-//                        if (aBoolean) {
-//                            //申请的权限全部允许
-////                            showToast.makeText(SearchActivity.this, "允许了权限!", showToast.LENGTH_SHORT).showToast();
-//                            new LFilePicker()
-//                                    .withFileFilter(new String[]{".jpg", ".png"})
-//                                    .withActivity(getActivity())
-//                                    .withMutilyMode(false)//单选
-//                                    .withRequestCode(REQUESTCODE_FROM_ACTIVITY)
-//                                    .start();
-//                        } else {
-//                            //只要有一个权限被拒绝，就会执行
-//                            showToast("未授权权限，功能不能使用");
-//                        }
-//                    }
-//                });
+                //                RxPermissions rxPermissions = new RxPermissions(getActivity());
+                //                rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
+                //                    @Override
+                //                    public void accept(Boolean aBoolean) throws Exception {
+                //                        if (aBoolean) {
+                //                            //申请的权限全部允许
+                ////                            showToast.makeText(SearchActivity.this, "允许了权限!", showToast.LENGTH_SHORT).showToast();
+                //                            new LFilePicker()
+                //                                    .withFileFilter(new String[]{".jpg", ".png"})
+                //                                    .withActivity(getActivity())
+                //                                    .withMutilyMode(false)//单选
+                //                                    .withRequestCode(REQUESTCODE_FROM_ACTIVITY)
+                //                                    .start();
+                //                        } else {
+                //                            //只要有一个权限被拒绝，就会执行
+                //                            showToast("未授权权限，功能不能使用");
+                //                        }
+                //                    }
+                //                });
                 getTakePhoto().onPickFromGallery();
                 break;
             case R.id.ll_edit_info:
@@ -204,12 +226,69 @@ public class MeFragment extends BaseFragment implements TakePhoto.TakeResultList
             case R.id.ll_study_history:
                 startActivity(new Intent(mContext, StudyHistoryActivity.class));
                 break;
+            case R.id.ll_power:
+                //                PowerManager mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+                //                //                mPowerManager.setPowerSaveMode(mode);//需要DEVICE_POWER权限
+                //                PowerManager.WakeLock wakeLock = mPowerManager.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK | PowerManager.PARTIAL_WAKE_LOCK,
+                //                        "MyWakelockTag");
+                //                wakeLock.acquire();
+
+                //                RxPermissions rxPermissions = new RxPermissions(getActivity());
+                //                rxPermissions.request(Manifest.permission.WRITE_SETTINGS).subscribe(new Consumer<Boolean>() {
+                //                    @Override
+                //                    public void accept(Boolean aBoolean) throws Exception {
+                //                        if (aBoolean) {
+                //
+                //                            saveBrightness(getActivity(),100);
+                //                        } else {
+                //                            //只要有一个权限被拒绝，就会执行
+                //                            showToast("未授权权限，功能不能使用");
+                //                        }
+                //                    }
+                //                });
+                if (isOn) {
+                    changeAppBrightness(getScreenBrightness());
+                    isOn = false;
+                    tvPower.setText("off");
+                } else {
+                    isOn = true;
+                    int brightness = getScreenBrightness();
+                    changeAppBrightness(20);
+                    tvPower.setText("on");
+                }
+                break;
             case R.id.ll_center_logout:
                 SPUtils.setLogin(mContext, false);
                 startActivity(new Intent(mContext, LoginActivity.class));
                 finish();
                 break;
         }
+    }
+
+    // 获取系统屏幕亮度
+    public int getScreenBrightness() {
+        int value = 0;
+        ContentResolver cr = getActivity().getContentResolver();
+        try {
+            value = Settings.System.getInt(cr, Settings.System.SCREEN_BRIGHTNESS);
+        } catch (Settings.SettingNotFoundException e) {
+
+        }
+        return value;
+    }
+
+    // 获取app亮度
+    public void changeAppBrightness(int brightness) {
+        Window window = getActivity().getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.screenBrightness = (brightness <= 0 ? 1 : brightness) / 255f;
+        window.setAttributes(lp);
+    }
+
+    public void saveBrightness(Activity activity, int brightness) {
+        Uri uri = Settings.System.getUriFor(Settings.System.SCREEN_BRIGHTNESS);
+        Settings.System.putInt(getActivity().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightness);
+        activity.getContentResolver().notifyChange(uri, null);
     }
 
     @Override

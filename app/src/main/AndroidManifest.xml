@@ -22,6 +22,8 @@
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.INTERNAL_SYSTEM_WINDOW" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.DEVICE_POWER" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application
             android:name=".BaseApplication"
             android:allowBackup="true"
@@ -50,8 +52,6 @@
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.AddThingsActivity" />
         <activity android:name=".ui.activity.AddClassActivity" />
-        <activity android:name=".ui.activity.AddKuActivity" />
-        <activity android:name=".ui.activity.TypeListActivity" />
         <activity android:name=".ui.activity.TodoListActivity" />
         <activity android:name=".ui.activity.AddTypeActivity" />
         <activity android:name=".ui.activity.AddStudyActivity" />

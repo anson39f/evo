@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:widget="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:widget="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/title_toolbar"/>
+    <include layout="@layout/title_toolbar" />
+
+    <TextView
+        android:id="@+id/tvStudyTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_jiu"
+        android:padding="10dp"
+        android:text=""
+        android:textColor="@color/text_main"
+        android:textSize="@dimen/text_13"
+        android:textStyle="bold" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -16,14 +27,14 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </FrameLayout>
 
     <com.xds.project.widget.PaperButton
@@ -31,15 +42,15 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:visibility="gone"
         widget:paper_color="@color/maincolor"
         widget:paper_corner_radius="19dp"
         widget:paper_text="批量删除"
         widget:paper_text_color="@color/white"
-        widget:paper_text_size="15sp"/>
+        widget:paper_text_size="15sp" />
 </LinearLayout>
