@@ -3,6 +3,7 @@ package com.xds.project.ui.activity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import butterknife.BindView;
 import com.dl7.recycler.helper.RecyclerViewHelper;
 import com.dl7.recycler.listener.OnRecyclerViewItemClickListener;
@@ -26,6 +27,8 @@ public class TodoListActivity extends BaseActivity {
     Toolbar toobar;
     @BindView(R.id.recyclerview)
     RecyclerView recyclerview;
+    @BindView(R.id.tvStudyTime)
+    TextView tvStudyTime;
     private TodoListAdapter adapter;
 
     @Override
@@ -38,6 +41,7 @@ public class TodoListActivity extends BaseActivity {
         initToolBar(toobar, true, "To-do");
         adapter = new TodoListAdapter(this);
         RecyclerViewHelper.initRecyclerViewV(getContext(), recyclerview, true, adapter);
+        tvStudyTime.setVisibility(View.GONE);
     }
 
     @Override

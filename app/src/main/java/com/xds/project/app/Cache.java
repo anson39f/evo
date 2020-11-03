@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.xds.project.data.beanv2.CourseV2;
 import com.xds.project.data.greendao.*;
+import com.xds.project.entity.User;
 import com.xds.project.util.AppUtils;
 
 import java.util.ArrayList;
@@ -54,7 +55,12 @@ public class Cache {
                 context, "localData.db", null);
         DaoMaster daoMaster = new DaoMaster(devOpenHelper.getWritableDatabase());
         DaoSession daoSession = daoMaster.newSession();
-
+        User user = new User();
+        user.setUsername("test");
+        user.setPassword("123");
+        user.setEmail("123@gmail.com");
+        user.setPhone("048555555");
+        mUserDao.insert(user);
         mLocalDataDao = daoSession.getCourseV2Dao();
         mLocalDataDao.deleteAll();
         List<CourseV2> localData = mLocalDataDao.loadAll();

@@ -1,27 +1,27 @@
 package com.xds.project.ui.fragment;
 
+import android.Manifest;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
+import android.provider.CalendarContract;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
 import com.dl7.recycler.listener.OnRecyclerViewItemClickListener;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.base.utils.PreferencesUtils;
 import com.xds.project.BaseApplication;
@@ -49,13 +49,15 @@ import com.xds.project.widget.ShowDetailDialog;
 import com.xds.project.widget.custom.course.CourseAncestor;
 import com.xds.project.widget.custom.course.CourseView;
 import com.xds.project.widget.custom.util.Utils;
-
+import io.reactivex.functions.Consumer;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * @author .
@@ -82,6 +84,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     private int mHeightSelectWeek;
     private boolean mSelectWeekIsShow = false;
     private LinearLayout mLayoutCourse;
+    private RxPermissions rxPermissions;
 
     @Override
     protected int attachLayoutRes() {
@@ -102,7 +105,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         mLayoutWeekGroup = findViewById(R.id.layout_week_group);
         mLayoutNodeGroup = findViewById(R.id.layout_node_group);
         mLayoutCourse = findViewById(R.id.layout_course);
-
+        rxPermissions = new RxPermissions(getActivity());
         initFirstStart();
         initToolbar();
         initWeek();
@@ -156,6 +159,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
             @Override
             public void onClick(View v) {
                 weekTitle(v);
+
             }
         });
         TextView tvTitle = findViewById(R.id.tv_toolbar_title);
@@ -432,7 +436,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         CourseV2Dao courseV2Dao = Cache.instance().getCourseV2Dao();
         LogUtil.d(this, "当前课程数：" + courses.size());
 
-        for (CourseV2 course : courses) {
+        for (final CourseV2 course : courses) {
             if (course.getCouColor() == null || course.getCouColor() == -1) {
                 course.setCouColor(Utils.getRandomColor());
                 courseV2Dao.update(course);
@@ -442,6 +446,20 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
             LogUtil.e(this, "即将显示：" + course.toString());
 
             mCourseViewV2.addCourse(course);
+
+            rxPermissions.request(Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR).subscribe(new Consumer<Boolean>() {
+                @Override
+                public void accept(Boolean aBoolean) throws Exception {
+                    if (aBoolean) {
+                        addCalendar(course);
+                        //弹出系统日历
+//                            jumpCalendar();
+                    } else {
+                        //只要有一个权限被拒绝，就会执行
+                        showToast("The function cannot be used without authorization");
+                    }
+                }
+            });
         }
 
         // 没有课程才显示logo
@@ -452,11 +470,97 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         //        }
     }
 
-    private boolean checkUser() {
-        if (user == null || "普通用户".equals(user.getType())) {
-            showToast("没有权限进行操作");
-            return true;
+    String calanderURL = "content://com.android.calendar/calendars";
+    String calanderEventURL = "content://com.android.calendar/events";
+    String calanderRemiderURL = "content://com.android.calendar/reminders";
+
+    /**
+     * 增加一个日历事件
+     */
+    public void addCalendar(CourseV2 course) {
+        //查询将返回所有日历，包括那些平时不会用到的
+        String[] projection = new String[]{"_id", "name"};
+        Uri calendars = Uri.parse(calanderURL);
+        Cursor managedCursor = getActivity().getContentResolver().query(calendars, projection, null, null, null);
+
+        String calId = null;
+        //现在检索的日历列表,可以遍历的结果如下
+        if (managedCursor.moveToFirst()) {
+            int nameColumn = managedCursor.getColumnIndex("name");
+            int idColumn = managedCursor.getColumnIndex("_id");
+            do {
+                String calName = managedCursor.getString(nameColumn);
+                calId = managedCursor.getString(idColumn);
+            } while (managedCursor.moveToNext());
         }
-        return false;
+
+        //添加一个条目到特定的日历，我们需要配置一个日历项插入使用与ContentValues如下：
+        ContentValues event = new ContentValues();
+        //事件插入日历标识符
+        event.put("calendar_id", calId);
+
+        //活动的标题，描述和位置领域的一些基本信息。
+        event.put("title", course.getCouName());
+        event.put("description", course.getCouWeek() + " week");
+        event.put("eventLocation", course.getCouLocation());
+
+        //设置事件的开始和结束的信息如下
+        Calendar mCalendar = Calendar.getInstance();
+        //mCalendar.add(Calendar.DAY_OF_MONTH, 1);
+        mCalendar.set(Calendar.HOUR_OF_DAY, Constant.ALTER_TIMES[course.getCouStartNode() - 1]);
+        mCalendar.set(Calendar.MINUTE, 0);
+        long start = mCalendar.getTime().getTime();
+        mCalendar.set(Calendar.HOUR_OF_DAY, Constant.ALTER_TIMES[course.getCouStartNode() + course.getCouNodeCount() - 2]);
+        long end = mCalendar.getTime().getTime();
+        event.put("dtstart", start);
+        event.put("dtend", end);
+
+        //设置一个全天事件的条目
+        //event.put("allDay", 1); // 0 for false, 1 for true
+
+        //事件状态暂定(0)，确认(1)或取消(2)
+        event.put("eventStatus", 1);
+
+        //控制是否事件触发报警，提醒如下
+        event.put("hasAlarm", 1); // 0 for false, 1 for true
+
+        //设置时区,否则会报错
+        event.put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
+
+        //一旦日历事件配置正确，我们已经准备好使用ContentResolver插入到相应的开放新日历的日历事件项：
+        Uri eventsUri = Uri.parse(calanderEventURL);
+        Uri newEvent = getActivity().getContentResolver().insert(eventsUri, event);
+
+        //设置什么时候提醒
+        //Uri newEvent = getActivity().getContentResolver().insert(Uri.parse(calanderEventURL), event);
+        long id = Long.parseLong(newEvent.getLastPathSegment());
+        ContentValues values = new ContentValues();
+        values.put("event_id", id);
+        //提前10分钟有提醒
+        values.put(CalendarContract.Reminders.MINUTES, 180);
+        values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
+        getActivity().getContentResolver().insert(Uri.parse(calanderRemiderURL), values);
+//        Toast.makeText(getActivity(), "插入事件成功!!!", Toast.LENGTH_LONG).show();
+
     }
+
+    /**
+     * 弹出系统日历
+     */
+    private void jumpCalendar() {
+        try {
+            Intent i = new Intent();
+            ComponentName cn = null;
+            if (Integer.parseInt(Build.VERSION.SDK) >= 8) {
+                cn = new ComponentName("com.android.calendar", "com.android.calendar.LaunchActivity");
+
+            } else {
+                cn = new ComponentName("com.google.android.calendar", "com.android.calendar.LaunchActivity");
+            }
+            i.setComponent(cn);
+            getActivity().startActivity(i);
+        } catch (ActivityNotFoundException e) {
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.xds.project.ui.activity;
 
+import android.Manifest;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +10,9 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
-
+import butterknife.BindView;
+import butterknife.OnClick;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xds.base.ui.activity.BaseActivity;
 import com.xds.project.R;
 import com.xds.project.app.Cache;
@@ -21,11 +24,8 @@ import com.xds.project.util.event.UserEvent;
 import com.xds.project.widget.DialogHelper;
 import com.xds.project.widget.DialogListener;
 import com.xds.project.widget.PaperButton;
-
+import io.reactivex.functions.Consumer;
 import org.greenrobot.eventbus.EventBus;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 import static android.view.WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD;
 import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED;
@@ -76,6 +76,17 @@ public class LockActivity extends BaseActivity {
             Intent service = new Intent(this, ScreenListenerService.class);
             startService(service);
         }
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean aBoolean) throws Exception {
+                if (aBoolean) {
+                } else {
+                    //只要有一个权限被拒绝，就会执行
+                    showToast("The function cannot be used without authorization");
+                }
+            }
+        });
     }
 
     @Override
