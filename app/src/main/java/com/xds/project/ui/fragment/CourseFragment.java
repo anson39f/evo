@@ -536,7 +536,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
         long id = Long.parseLong(newEvent.getLastPathSegment());
         ContentValues values = new ContentValues();
         values.put("event_id", id);
-        //提前10分钟有提醒
+        //提前3个小时有提醒
         values.put(CalendarContract.Reminders.MINUTES, 180);
         values.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
         getActivity().getContentResolver().insert(Uri.parse(calanderRemiderURL), values);
