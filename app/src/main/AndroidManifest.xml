@@ -50,7 +50,7 @@
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.TestCaseListActivity" />
         <activity android:name="com.xds.base.ui.activity.EnvSettingActivity" />
-        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.CourseMangerActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.AddThingsActivity" />
         <activity android:name=".ui.activity.AddClassActivity" />

@@ -456,7 +456,7 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
 //                            jumpCalendar();
                     } else {
                         //只要有一个权限被拒绝，就会执行
-                        showToast("The function cannot be used without authorization");
+                        showToast(getString(R.string.tip_authorization_miss));
                     }
                 }
             });

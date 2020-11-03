@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
-        tools:showIn="@layout/activity_setting">
+        tools:showIn="@layout/activity_courses_manger">
 
         <TextView
             android:id="@+id/tv_title"

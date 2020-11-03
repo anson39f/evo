@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <include layout="@layout/title_toolbar" />
+
+    <LinearLayout
+            style="@style/width_match"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+        <LinearLayout
+                android:id="@+id/ll_share"
+                style="@style/height_48"
+                android:layout_marginBottom="1dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+            <TextView
+                    style="@style/tv_15sp"
+                    android:text="Share courses"
+                    android:textColor="#6F6F6F" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/ll_import"
+                style="@style/height_48"
+                android:layout_marginBottom="1dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:visibility="visible">
+
+            <TextView
+                    style="@style/tv_15sp"
+                    android:text="Import Bluetooth Course"
+                    android:textColor="#6F6F6F" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View style="@style/height_0" />
+
+</LinearLayout>

@@ -68,8 +68,8 @@ public class LockActivity extends BaseActivity {
         }
         min = selfStudy.getMinute();
         sec = selfStudy.getSecond();
-        min = 0;
-        sec = 10;
+//        min = 0;
+//        sec = 10;
         btTime.setText(String.format("%02d:%02d", min, sec));
         if (selfStudy.getModel() == 0) {
             isLock = true;

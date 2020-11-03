@@ -88,4 +88,5 @@
     <string name="tip_add_success">add success！</string>
     <string name="tip_edit_success">edit success！</string>
     <string name="tip_not_class_time">Please set the course time！</string>
+    <string name="tip_authorization_miss">The function cannot be used without authorization</string>
 </resources>

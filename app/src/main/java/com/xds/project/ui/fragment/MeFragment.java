@@ -10,7 +10,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
+import butterknife.BindView;
+import butterknife.OnClick;
 import com.bumptech.glide.Glide;
 import com.jph.takephoto.app.TakePhoto;
 import com.jph.takephoto.app.TakePhotoImpl;
@@ -30,24 +31,17 @@ import com.xds.project.R;
 import com.xds.project.app.Cache;
 import com.xds.project.data.beanv2.SelfStudy;
 import com.xds.project.entity.User;
-import com.xds.project.ui.activity.LoginActivity;
-import com.xds.project.ui.activity.ResetPassActivity;
-import com.xds.project.ui.activity.StudyHistoryActivity;
-import com.xds.project.ui.activity.TodoListActivity;
-import com.xds.project.ui.activity.UserInfoEditActivity;
+import com.xds.project.ui.activity.*;
+import com.xds.project.util.ActivityTools;
 import com.xds.project.util.LogUtil;
 import com.xds.project.util.SPUtils;
 import com.xds.project.util.event.UserEvent;
-
+import de.hdodenhof.circleimageview.CircleImageView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * @author .
@@ -189,29 +183,10 @@ public class MeFragment extends BaseFragment implements TakePhoto.TakeResultList
         return type;
     }
 
-    @OnClick({R.id.ll_power, R.id.iv_center_user, R.id.ll_password, R.id.ll_edit_info, R.id.ll_todo, R.id.ll_study_history, R.id.ll_center_logout})
+    @OnClick({R.id.ll_course_manger, R.id.ll_power, R.id.iv_center_user, R.id.ll_password, R.id.ll_edit_info, R.id.ll_todo, R.id.ll_study_history, R.id.ll_center_logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_center_user:
-                //                RxPermissions rxPermissions = new RxPermissions(getActivity());
-                //                rxPermissions.request(Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
-                //                    @Override
-                //                    public void accept(Boolean aBoolean) throws Exception {
-                //                        if (aBoolean) {
-                //                            //申请的权限全部允许
-                ////                            showToast.makeText(SearchActivity.this, "允许了权限!", showToast.LENGTH_SHORT).showToast();
-                //                            new LFilePicker()
-                //                                    .withFileFilter(new String[]{".jpg", ".png"})
-                //                                    .withActivity(getActivity())
-                //                                    .withMutilyMode(false)//单选
-                //                                    .withRequestCode(REQUESTCODE_FROM_ACTIVITY)
-                //                                    .start();
-                //                        } else {
-                //                            //只要有一个权限被拒绝，就会执行
-                //                            showToast("未授权权限，功能不能使用");
-                //                        }
-                //                    }
-                //                });
                 getTakePhoto().onPickFromGallery();
                 break;
             case R.id.ll_edit_info:
@@ -226,26 +201,10 @@ public class MeFragment extends BaseFragment implements TakePhoto.TakeResultList
             case R.id.ll_study_history:
                 startActivity(new Intent(mContext, StudyHistoryActivity.class));
                 break;
+            case R.id.ll_course_manger:
+                ActivityTools.startToNextActivity(getActivity(), CourseMangerActivity.class);
+                break;
             case R.id.ll_power:
-                //                PowerManager mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
-                //                //                mPowerManager.setPowerSaveMode(mode);//需要DEVICE_POWER权限
-                //                PowerManager.WakeLock wakeLock = mPowerManager.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK | PowerManager.PARTIAL_WAKE_LOCK,
-                //                        "MyWakelockTag");
-                //                wakeLock.acquire();
-
-                //                RxPermissions rxPermissions = new RxPermissions(getActivity());
-                //                rxPermissions.request(Manifest.permission.WRITE_SETTINGS).subscribe(new Consumer<Boolean>() {
-                //                    @Override
-                //                    public void accept(Boolean aBoolean) throws Exception {
-                //                        if (aBoolean) {
-                //
-                //                            saveBrightness(getActivity(),100);
-                //                        } else {
-                //                            //只要有一个权限被拒绝，就会执行
-                //                            showToast("未授权权限，功能不能使用");
-                //                        }
-                //                    }
-                //                });
                 if (isOn) {
                     changeAppBrightness(getScreenBrightness());
                     isOn = false;

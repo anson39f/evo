@@ -24,10 +24,7 @@ import com.xds.project.ui.activity.TestCaseListActivity;
 import com.xds.project.util.ToastUtil;
 import okhttp3.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
