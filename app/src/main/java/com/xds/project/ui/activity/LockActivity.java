@@ -39,6 +39,8 @@ public class LockActivity extends BaseActivity {
     public static final int FLAG_HOMEKEY_DISPATCHED = 0x80000000;
     @BindView(R.id.btTime)
     PaperButton btTime;
+    @BindView(R.id.btExit)
+    PaperButton btExit;
     private SelfStudy selfStudy;
     private int sec = 60;
     private int min;
@@ -102,49 +104,48 @@ public class LockActivity extends BaseActivity {
                 if (over || fail) {
                     return;
                 }
-                if (mHasFocus) {
-                    if (mHasFocusTime >= 60) {
-                        showOverTimeDialog();
+                if (mHasFocusTime >= 60) {
+                    showOverTimeDialog();
+                    return;
+                } else {
+                    mHasFocusTime = 0;
+                }
+                if (sec == 0) {
+                    if (min == 0) {
+                        //                            showToast("Over");
+                        over = true;
+                        btTime.setText(String.format("%02d:%02d", min, sec));
+                        stopService(new Intent(getActivity(), ScreenListenerService.class));
+                        DialogHelper dialogHelper = new DialogHelper();
+                        dialogHelper.showNormalDialog(getActivity(), "Success?", "You studied for " + selfStudy.getMinute() + " minute ", new DialogListener() {
+                            @Override
+                            public void onPositive(DialogInterface dialog, int which) {
+                                super.onPositive(dialog, which);
+                                dialog.dismiss();
+                                EventBus.getDefault().post(new UserEvent());
+                                finish();
+                            }
+
+                            @Override
+                            public void onNegative(DialogInterface dialog, int which) {
+                                super.onNegative(dialog, which);
+                                dialog.dismiss();
+                                EventBus.getDefault().post(new UserEvent());
+                                finish();
+                            }
+                        });
+                        selfStudy.setState(1);
+                        Cache.instance().getSelfStudyDao().insert(selfStudy);
                         return;
                     } else {
-                        mHasFocusTime = 0;
+                        min--;
                     }
-                    if (sec == 0) {
-                        if (min == 0) {
-                            //                            showToast("Over");
-                            over = true;
-                            btTime.setText(String.format("%02d:%02d", min, sec));
-                            stopService(new Intent(getActivity(), ScreenListenerService.class));
-                            DialogHelper dialogHelper = new DialogHelper();
-                            dialogHelper.showNormalDialog(getActivity(), "Success?", "You studied for " + selfStudy.getMinute() + " minute ", new DialogListener() {
-                                @Override
-                                public void onPositive(DialogInterface dialog, int which) {
-                                    super.onPositive(dialog, which);
-                                    dialog.dismiss();
-                                    EventBus.getDefault().post(new UserEvent());
-                                    finish();
-                                }
-
-                                @Override
-                                public void onNegative(DialogInterface dialog, int which) {
-                                    super.onNegative(dialog, which);
-                                    dialog.dismiss();
-                                    EventBus.getDefault().post(new UserEvent());
-                                    finish();
-                                }
-                            });
-                            selfStudy.setState(1);
-                            Cache.instance().getSelfStudyDao().insert(selfStudy);
-                            return;
-                        } else {
-                            min--;
-                        }
-                        sec = 59;
-                    } else {
-                        sec--;
-                    }
-                    btTime.setText(String.format("%02d:%02d", min, sec));
+                    sec = 59;
                 } else {
+                    sec--;
+                }
+                btTime.setText(String.format("%02d:%02d", min, sec));
+                if (!mHasFocus) {
                     mHasFocusTime++;
                 }
                 updateViews(true);
@@ -237,38 +238,44 @@ public class LockActivity extends BaseActivity {
             return super.onKeyDown(keyCode, event);
         }
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU || keyCode == KeyEvent.KEYCODE_HOME) {
-            DialogHelper dialogHelper = new DialogHelper();
-            dialogHelper.showNormalDialog(getActivity(), "Exit?", "Are your sure to exit the focus model?" +
-                    "Once you exit,you will not receive any reward point", new DialogListener() {
-                @Override
-                public void onPositive(DialogInterface dialog, int which) {
-                    super.onPositive(dialog, which);
-                    dialog.dismiss();
-                    if (selfStudy != null) {
-                        selfStudy.setState(0);
-                        Cache.instance().getSelfStudyDao().insert(selfStudy);
-                    }
-                    stopService(new Intent(getActivity(), ScreenListenerService.class));
-                    isLock = false;
-                    finish();
-                }
-
-                @Override
-                public void onNegative(DialogInterface dialog, int which) {
-                    super.onNegative(dialog, which);
-                    dialog.dismiss();
-
-                }
-            });
+            exitStudy();
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick({R.id.btTime})
+    private void exitStudy() {
+        DialogHelper dialogHelper = new DialogHelper();
+        dialogHelper.showNormalDialog(getActivity(), "Exit?", "Are your sure to exit the focus model?" +
+                "Once you exit,you will not receive any reward point", new DialogListener() {
+            @Override
+            public void onPositive(DialogInterface dialog, int which) {
+                super.onPositive(dialog, which);
+                dialog.dismiss();
+                fail = true;
+                if (selfStudy != null) {
+                    selfStudy.setState(0);
+                    Cache.instance().getSelfStudyDao().insert(selfStudy);
+                }
+                stopService(new Intent(getActivity(), ScreenListenerService.class));
+                isLock = false;
+                finish();
+            }
+
+            @Override
+            public void onNegative(DialogInterface dialog, int which) {
+                super.onNegative(dialog, which);
+                dialog.dismiss();
+
+            }
+        });
+    }
+
+    @OnClick({R.id.btExit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.btTime:
+            case R.id.btExit:
+                exitStudy();
                 break;
         }
 

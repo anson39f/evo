@@ -1,5 +1,6 @@
 package com.xds.project.ui.activity;
 
+import android.Manifest;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
-
+import butterknife.BindView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xds.base.ui.activity.BaseActivity;
 import com.xds.base.ui.fragment.BaseFragment;
 import com.xds.project.R;
@@ -18,8 +20,7 @@ import com.xds.project.ui.fragment.CourseFragment;
 import com.xds.project.ui.fragment.MeFragment;
 import com.xds.project.ui.fragment.SelfStudyFragment;
 import com.xds.project.ui.fragment.ToDoListFragment;
-
-import butterknife.BindView;
+import io.reactivex.functions.Consumer;
 
 
 /**
@@ -85,7 +86,17 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void updateViews(boolean isRefresh) {
-
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean aBoolean) throws Exception {
+                if (aBoolean) {
+                } else {
+                    //只要有一个权限被拒绝，就会执行
+                    showToast(getString(R.string.tip_authorization_miss));
+                }
+            }
+        });
     }
 
 

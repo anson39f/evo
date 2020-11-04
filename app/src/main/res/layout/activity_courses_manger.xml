@@ -26,7 +26,7 @@
 
             <TextView
                     style="@style/tv_15sp"
-                    android:text="Share courses"
+                    android:text="Share Courses"
                     android:textColor="#6F6F6F" />
         </LinearLayout>
 

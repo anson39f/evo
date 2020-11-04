@@ -1,9 +1,11 @@
 package com.xds.project.ui.activity;
 
+import android.Manifest;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-
+import butterknife.BindView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xds.base.ui.activity.BaseActivity;
 import com.xds.base.ui.activity.EnvSettingActivity;
 import com.xds.base.utils.JsonParser;
@@ -18,8 +20,7 @@ import com.xds.project.ui.fragment.RegisterFragment;
 import com.xds.project.util.ActivityTools;
 import com.xds.project.util.SPUtils;
 import com.xds.project.util.StatusBarUtils;
-
-import butterknife.BindView;
+import io.reactivex.functions.Consumer;
 
 public class LoginActivity extends BaseActivity implements OnFragmentInteractionListener {
     @BindView(R.id.login_tabs)
@@ -73,6 +74,17 @@ public class LoginActivity extends BaseActivity implements OnFragmentInteraction
 
     @Override
     protected void updateViews(boolean isRefresh) {
+        RxPermissions rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean aBoolean) throws Exception {
+                if (aBoolean) {
+                } else {
+                    //只要有一个权限被拒绝，就会执行
+                    showToast(getString(R.string.tip_authorization_miss));
+                }
+            }
+        });
     }
 
 

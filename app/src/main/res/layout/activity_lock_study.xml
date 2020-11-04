@@ -22,4 +22,22 @@
             widget:paper_text="00:00"
             widget:paper_text_color="@color/text_main"
             widget:paper_text_size="45sp" />
+
+    <com.xds.project.widget.PaperButton
+            android:id="@+id/btExit"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            widget:paper_color="@color/maincolor"
+            widget:paper_corner_radius="19dp"
+            widget:paper_text="Exit"
+            android:layout_marginBottom="30dp"
+            widget:paper_text_color="@color/white"
+            widget:paper_text_size="15sp" />
 </RelativeLayout>
