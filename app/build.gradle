@@ -66,7 +66,6 @@ dependencies {
     //    权限
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     implementation 'com.orhanobut:logger:2.1.1'
-    implementation project(':banner')
     implementation project(':RecyclerViewHelper')
     implementation project(':library')
     implementation 'com.github.ctiao:ndkbitmap-armv5:0.9.21'

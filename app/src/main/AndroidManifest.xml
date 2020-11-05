@@ -48,14 +48,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.TestCaseListActivity" />
         <activity android:name="com.xds.base.ui.activity.EnvSettingActivity" />
         <activity android:name=".ui.activity.CourseMangerActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.AddThingsActivity" />
         <activity android:name=".ui.activity.AddClassActivity" />
         <activity android:name=".ui.activity.TodoListActivity" />
-        <activity android:name=".ui.activity.AddTypeActivity" />
         <activity android:name=".ui.activity.AddStudyActivity" />
         <activity
                 android:name=".ui.activity.LockActivity"
