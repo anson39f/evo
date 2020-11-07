@@ -15,7 +15,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
-import android.view.*;
+import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -36,7 +39,6 @@ import com.xds.project.entity.User;
 import com.xds.project.mvp.CourseContract;
 import com.xds.project.mvp.CoursePresenter;
 import com.xds.project.ui.activity.AddClassActivity;
-import com.xds.project.ui.activity.SearchActivity;
 import com.xds.project.ui.adapter.SelectWeekAdapter;
 import com.xds.project.util.AppUtils;
 import com.xds.project.util.LogUtil;
@@ -132,19 +134,19 @@ public class CourseFragment extends BaseFragment implements CourseContract.View 
     private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("");
-        toolbar.inflateMenu(R.menu.toolbar_main);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.action_set) {
-                    Intent intent = new Intent(getActivity(),
-                            SearchActivity.class);
-                    startActivity(intent);
-                    return true;
-                }
-                return false;
-            }
-        });
+//        toolbar.inflateMenu(R.menu.toolbar_main);
+//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                if (item.getItemId() == R.id.action_set) {
+//                    Intent intent = new Intent(getActivity(),
+//                            SearchActivity.class);
+//                    startActivity(intent);
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
     }
 
     private void initWeek() {

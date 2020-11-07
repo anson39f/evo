@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.Process;
 import android.os.StrictMode;
 
-import com.xds.base.config.Env;
 import com.xds.project.app.Cache;
 import com.xds.project.entity.User;
 import com.xds.project.util.ScreenUtils;
@@ -36,7 +35,6 @@ public class BaseApplication extends Application {
                 StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
                 StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
             }
-            Env.instance().init();
             Cache.instance().init(getContext());
             ScreenUtils.init(getContext());
         }

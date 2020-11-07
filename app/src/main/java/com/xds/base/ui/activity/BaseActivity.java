@@ -246,7 +246,6 @@ public abstract class BaseActivity extends RxAppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.setting: {
-                EnvSettingActivity.launcher(this);
                 return true;
             }
             case android.R.id.home: {

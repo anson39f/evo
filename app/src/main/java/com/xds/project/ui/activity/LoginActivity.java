@@ -7,7 +7,6 @@ import android.view.View;
 import butterknife.BindView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xds.base.ui.activity.BaseActivity;
-import com.xds.base.ui.activity.EnvSettingActivity;
 import com.xds.base.utils.JsonParser;
 import com.xds.base.utils.PreferencesUtils;
 import com.xds.project.BaseApplication;
@@ -87,9 +86,7 @@ public class LoginActivity extends BaseActivity implements OnFragmentInteraction
         });
     }
 
-
     public void toEnv(View view) {
-        EnvSettingActivity.launcher(this);
     }
 
 }
